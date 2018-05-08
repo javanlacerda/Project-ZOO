@@ -1,0 +1,1 @@
+A classe "Animal" foi escolhida como classe abstrata por que essa classe nunca vai chegar a ser instanciada.
