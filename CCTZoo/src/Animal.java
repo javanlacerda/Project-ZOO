@@ -15,10 +15,10 @@ public abstract class Animal {
 	private Set<Vaccine> vaccineSet;
 	private Set<Medication> medicationSet;
 	private long exhibitNumber;
-	
+
 	public Animal(String name, Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
-		
+
 		this.name = name;
 		this.gender = gender;
 		this.offSpring = offSpring;
@@ -79,24 +79,13 @@ public abstract class Animal {
 	public long getExhibitNumber() {
 		return exhibitNumber;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	public boolean addVaccine(Vaccine vaccine) {
+		return vaccineSet.add(vaccine);
+	}
+
+	public boolean addMedication(Medication medication) {
+		return medicationSet.add(medication);
+	}
 
 }
-
-
