@@ -80,6 +80,11 @@ public abstract class Animal {
 		return exhibitNumber;
 	}
 
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 	public boolean addVaccine(Vaccine vaccine) {
 		return vaccineSet.add(vaccine);
 	}
