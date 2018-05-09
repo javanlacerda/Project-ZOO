@@ -5,10 +5,9 @@ public class Mammal extends Animal {
 
 
 	
-	public Mammal(String nome, Gender GENDER, double height, double weigth, double length, LocalDate dateOfBirth,
-			LocalDate dateOfArrival, Set vaccineSet) {
-		
-		super(nome, GENDER, length, length, length, dateOfArrival, dateOfArrival, vaccineSet);
+	public Mammal(String name, Gender gender, Offspring offSpring, double height, double weigth, double length,
+			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
+		super(name, gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber);
 		
 	}
 	
