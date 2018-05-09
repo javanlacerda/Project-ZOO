@@ -15,6 +15,7 @@ public abstract class Animal {
 	private Set<Vaccine> vaccineSet;
 	private Set<Medication> medicationSet;
 	private long exhibitNumber;
+	private String type; // Fzr Enum
 
 	public Animal(String name, Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
@@ -81,8 +82,7 @@ public abstract class Animal {
 	}
 
 	public String getType() {
-		// TODO Auto-generated method stub
-		return "";
+		return this.type;
 	}
 
 	public boolean addVaccine(Vaccine vaccine) {
