@@ -84,13 +84,13 @@ public abstract class Animal {
 	public AnimalType getType() {
 		return this.type;
 	}
-
-	public boolean addVaccine(Vaccine vaccine) {
-		return vaccineSet.add(vaccine);
+	
+	public Set<Medication> getMedicationSet() {
+		return this.medicationSet;
 	}
-
-	public boolean addMedication(Medication medication) {
-		return medicationSet.add(medication);
+	
+	public Set<Vaccine> getVaccineSet(){
+		return this.vaccineSet;
 	}
 
 	@Override
