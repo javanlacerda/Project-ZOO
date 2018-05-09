@@ -15,10 +15,11 @@ public abstract class Animal {
 	private Set<Vaccine> vaccineSet;
 	private Set<Medication> medicationSet;
 	private long exhibitNumber;
-	
+	private AnimalType type;
+
 	public Animal(String name, Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
-		
+
 		this.name = name;
 		this.gender = gender;
 		this.offSpring = offSpring;
@@ -33,7 +34,7 @@ public abstract class Animal {
 	}
 
 	public double getHeight() {
-		return height;
+		return this.height;
 	}
 
 	public void setHeight(double height) {
@@ -41,7 +42,7 @@ public abstract class Animal {
 	}
 
 	public double getWeigth() {
-		return weigth;
+		return this.weigth;
 	}
 
 	public void setWeigth(double weigth) {
@@ -49,7 +50,7 @@ public abstract class Animal {
 	}
 
 	public double getLength() {
-		return length;
+		return this.length;
 	}
 
 	public void setLength(double length) {
@@ -57,52 +58,63 @@ public abstract class Animal {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public Gender getGender() {
-		return gender;
+		return this.gender;
 	}
 
 	public Offspring getOffSpring() {
-		return offSpring;
+		return this.offSpring;
 	}
 
 	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
+		return this.dateOfBirth;
 	}
 
 	public LocalDate getDateOfArrival() {
-		return dateOfArrival;
+		return this.dateOfArrival;
 	}
 
 	public long getExhibitNumber() {
-		return exhibitNumber;
+		return this.exhibitNumber;
 	}
 
-	public String getType() {
-		// TODO Auto-generated method stub
-		return "";
+	public AnimalType getType() {
+		return this.type;
+	}
+	
+	public Set<Medication> getMedicationSet() {
+		return this.medicationSet;
+	}
+	
+	public Set<Vaccine> getVaccineSet(){
+		return this.vaccineSet;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (exhibitNumber ^ (exhibitNumber >>> 32));
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Animal other = (Animal) obj;
+		if (exhibitNumber != other.exhibitNumber)
+			return false;
+		return true;
+	}
+	
+	
 
 }
-
-
