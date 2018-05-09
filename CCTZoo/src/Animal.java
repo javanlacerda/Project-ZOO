@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Animal {
@@ -16,7 +17,7 @@ public abstract class Animal {
 	private long exhibitNumber;
 	
 	public Animal(String name, Gender gender, Offspring offSpring, double height, double weigth, double length,
-			LocalDate dateOfBirth, LocalDate dateOfArrival, Set<Vaccine> vaccineSet, Set<Medication> medicationSet, long exhibitNumber) {
+			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
 		
 		this.name = name;
 		this.gender = gender;
@@ -26,8 +27,8 @@ public abstract class Animal {
 		this.length = length;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfArrival = dateOfArrival;
-		this.vaccineSet = vaccineSet;
-		this.medicationSet = medicationSet;
+		this.vaccineSet = new HashSet<>();
+		this.medicationSet = new HashSet<>();
 		this.exhibitNumber = exhibitNumber;
 	}
 
@@ -79,19 +80,6 @@ public abstract class Animal {
 		return exhibitNumber;
 	}
 	
-	
-	public Animal(String nome, Gender gENDER, double height, double weigth, double length, LocalDate dateOfBirth,
-			LocalDate dateOfArrival, Set vaccineSet) {
-		super();
-		this.nome = nome;
-		GENDER = gENDER;
-		this.height = height;
-		this.weigth = weigth;
-		this.length = length;
-		this.dateOfBirth = dateOfBirth;
-		this.dateOfArrival = dateOfArrival;
-		this.vaccineSet = vaccineSet;
-	}
 	
 	
 	
