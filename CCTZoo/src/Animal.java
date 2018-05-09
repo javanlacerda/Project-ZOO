@@ -12,6 +12,19 @@ public abstract class Animal {
 	private LocalDate dateOfArrival;
 	private Set vaccineSet;
 	
+	public Animal(String nome, Gender gENDER, double height, double weigth, double length, LocalDate dateOfBirth,
+			LocalDate dateOfArrival, Set vaccineSet) {
+		super();
+		this.nome = nome;
+		GENDER = gENDER;
+		this.height = height;
+		this.weigth = weigth;
+		this.length = length;
+		this.dateOfBirth = dateOfBirth;
+		this.dateOfArrival = dateOfArrival;
+		this.vaccineSet = vaccineSet;
+	}
+	
 	
 	
 
