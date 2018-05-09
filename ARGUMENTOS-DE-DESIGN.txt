@@ -1,6 +1,9 @@
 A classe "Animal" foi escolhida como classe abstrata por que essa classe nunca vai chegar a ser instanciada, e abstração de Animal é genérica, tendo em vista que
-há entre eles atributos e métodos em comun.
-Para o atributo genêro da classe "Animal" foi escolhido o uso de ENUM, afim de explorar os benefícios do Polimorfismo de Tipo e por tal atributo ser constante com possíveis valores já definidos.
-O Descendentes de um Animal foram encpasulados em um objeto para um melhor domínio da informação e manutenção da coesão da entidade Animal.
-Para registro de Vacinas e Medicamentos, primeiramente foram criadas as entidades dos dois para um melhor domínio e encpasulamento da informação,
-e para armazenar estes foram criados Conjuntos, observando o fato que Vacinas e Medicamentos são únicos.
+há entre eles atributos e métodos em comum.
+
+Para os atributos Genêro e Tipo da classe "Animal"  foram escolhidos o uso de ENUMS, afim de explorar os benefícios do Polimorfismo de Tipo e por tal atributo ser constante com possíveis valores já definidos.
+
+O Descendentes de um Animal foram encapsulados em um objeto para um melhor domínio da informação e manutenção da coesão da entidade Animal.
+
+Para registro de Vacinas e Medicamentos, primeiramente foram criadas as entidades dos dois para um melhor domínio e encapsulamento da informação,
+de modo a tornar esta mais descritiva, e para armazenar estes foram criados Conjuntos, observando o fato que Vacinas e Medicamentos são únicos.
