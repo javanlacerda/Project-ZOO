@@ -6,5 +6,12 @@ public class Vaccine {
 	private long id;
 	private String activePrinciple;
 	private LocalDate aplicattionDate;
+	
+	public Vaccine(String name, long id, String activePrinciple, LocalDate aplicattionDate) {
+		this.name = name;
+		this.id = id;
+		this.activePrinciple = activePrinciple;
+		this.aplicattionDate = aplicattionDate;
+	}
 
 }
