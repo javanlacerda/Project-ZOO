@@ -15,7 +15,7 @@ public abstract class Animal {
 	private Set<Vaccine> vaccineSet;
 	private Set<Medication> medicationSet;
 	private long exhibitNumber;
-	private String type; // Fzr Enum
+	private AnimalType type;
 
 	public Animal(String name, Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
@@ -34,7 +34,7 @@ public abstract class Animal {
 	}
 
 	public double getHeight() {
-		return height;
+		return this.height;
 	}
 
 	public void setHeight(double height) {
@@ -42,7 +42,7 @@ public abstract class Animal {
 	}
 
 	public double getWeigth() {
-		return weigth;
+		return this.weigth;
 	}
 
 	public void setWeigth(double weigth) {
@@ -50,7 +50,7 @@ public abstract class Animal {
 	}
 
 	public double getLength() {
-		return length;
+		return this.length;
 	}
 
 	public void setLength(double length) {
@@ -58,30 +58,30 @@ public abstract class Animal {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public Gender getGender() {
-		return gender;
+		return this.gender;
 	}
 
 	public Offspring getOffSpring() {
-		return offSpring;
+		return this.offSpring;
 	}
 
 	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
+		return this.dateOfBirth;
 	}
 
 	public LocalDate getDateOfArrival() {
-		return dateOfArrival;
+		return this.dateOfArrival;
 	}
 
 	public long getExhibitNumber() {
-		return exhibitNumber;
+		return this.exhibitNumber;
 	}
 
-	public String getType() {
+	public AnimalType getType() {
 		return this.type;
 	}
 
