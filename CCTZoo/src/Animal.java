@@ -79,6 +79,12 @@ public abstract class Animal {
 	public long getExhibitNumber() {
 		return exhibitNumber;
 	}
+
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 	
 	
 	
