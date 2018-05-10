@@ -3,12 +3,17 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import Exceptions.Animal.InvalidExhibitNumberException;
+import Exceptions.Animal.InvalidHeightException;
+import Exceptions.Animal.InvalidLengthException;
+import Exceptions.Animal.InvalidWeightException;
+
 public class Animal {
 
 	private Gender gender;
 	private Offspring offSpring;
 	private double height;
-	private double weigth;
+	private double weight;
 	private double length;
 	private LocalDate dateOfBirth;
 	private LocalDate dateOfArrival;
@@ -18,12 +23,16 @@ public class Animal {
 	private Set<AnimalType> typesSet;
 
 	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
-			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet) {
+			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet)
+			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
+			InvalidLengthException {
+
+		validateAtributes(exhibitNumber, height, weight, length);
 
 		this.gender = gender;
 		this.offSpring = offSpring;
 		this.height = height;
-		this.weigth = weigth;
+		this.weight = weigth;
 		this.length = length;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfArrival = dateOfArrival;
@@ -34,12 +43,16 @@ public class Animal {
 	}
 
 	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
-			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, String fligth) {
+			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, String fligth)
+			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
+			InvalidLengthException {
+
+		validateAtributes(exhibitNumber, height, weight, length);
 
 		this.gender = gender;
 		this.offSpring = offSpring;
 		this.height = height;
-		this.weigth = weigth;
+		this.weight = weigth;
 		this.length = length;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfArrival = dateOfArrival;
@@ -49,6 +62,15 @@ public class Animal {
 
 		new Animal.Avian(fligth);
 
+	}
+
+	private void validateAtributes(long exhibitNumber, double height, double weight, double length)
+			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
+			InvalidLengthException {
+		Utils.Validate.validateExhibitNumber(exhibitNumber);
+		Utils.Validate.validateHeigh(height);
+		Utils.Validate.validateWeight(weight);
+		Utils.Validate.validateLength(length);
 	}
 
 	public static class Avian {
@@ -88,11 +110,11 @@ public class Animal {
 	}
 
 	public double getWeigth() {
-		return this.weigth;
+		return this.weight;
 	}
 
 	public void setWeigth(double weigth) {
-		this.weigth = weigth;
+		this.weight = weigth;
 	}
 
 	public double getLength() {
