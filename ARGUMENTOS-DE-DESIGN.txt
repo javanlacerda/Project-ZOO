@@ -3,7 +3,8 @@ há entre eles atributos e métodos em comum.
 
 Para os atributos Genêro e Tipo da classe "Animal"  foram escolhidos o uso de ENUMS, afim de explorar os benefícios do Polimorfismo de Tipo e por tal atributo ser constante com possíveis valores já definidos.
 
-O Descendentes de um Animal foram encapsulados em um objeto para um melhor domínio da informação e manutenção da coesão da entidade Animal.
+O Descendentes de um Animal foram encapsulados em um objeto  OffSpring para um melhor domínio da informação e manutenção da coesão da entidade Animal.
 
 Para registro de Vacinas e Medicamentos, primeiramente foram criadas as entidades dos dois para um melhor domínio e encapsulamento da informação,
-de modo a tornar esta mais descritiva, e para armazenar estes foram criados Conjuntos, observando o fato que Vacinas e Medicamentos são únicos.
+de modo a tornar esta mais descritiva, e para armazenar estes foram criados Mapas, observando o fato que Vacinas e Medicamentos possuem chave única, e tal Coleção de Armazenamento
+oferta uma solução eficaz para a manipulação dos valores atráves de suas chaves que serão um ID serial do tipo LONG.
