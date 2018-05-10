@@ -1,9 +1,12 @@
+package cctZoo.entities;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import cctZoo.enums.AnimalType;
+import cctZoo.enums.Gender;
 import exceptions.InexistentMedicationException;
 import exceptions.InexistentVaccineException;
 import exceptions.InvalidActivePrincipleException;

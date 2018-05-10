@@ -1,3 +1,4 @@
+package cctZoo.entities;
 
 public class Offspring {
 	

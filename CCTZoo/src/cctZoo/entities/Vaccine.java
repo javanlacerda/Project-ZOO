@@ -1,3 +1,4 @@
+package cctZoo.entities;
 import java.time.LocalDate;
 
 import exceptions.InvalidActivePrincipleException;

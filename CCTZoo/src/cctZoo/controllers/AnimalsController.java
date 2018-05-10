@@ -1,8 +1,13 @@
+package cctZoo.controllers;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import cctZoo.entities.Animal;
+import cctZoo.entities.Offspring;
+import cctZoo.enums.AnimalType;
+import cctZoo.enums.Gender;
 import exceptions.InvalidActivePrincipleException;
 import exceptions.InvalidDosageException;
 import exceptions.InvalidExhibitNumberException;
