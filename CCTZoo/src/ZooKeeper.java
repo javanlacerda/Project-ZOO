@@ -37,7 +37,7 @@ public class ZooKeeper {
 
 		if (types.size() < maxTypes || types.contains(animal.getType())) {
 
-			if (animaisSobGuarda.size() < 10) {
+			if (animaisSobGuarda.size() < numberOfAnimals) {
 
 				animaisSobGuarda.put(animal.getExhibitNumber(), animal);
 				types.add(animal.getType());
@@ -94,10 +94,6 @@ public class ZooKeeper {
 
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getId() {
