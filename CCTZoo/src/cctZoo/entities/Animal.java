@@ -18,8 +18,9 @@ import exceptions.InvalidLengthException;
 import exceptions.InvalidNameException;
 import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
+import interfaces.AnimalInterface;
 
-public class Animal {
+public class Animal implements AnimalInterface{
 
 	private Gender gender;
 	private Offspring offSpring;
@@ -53,64 +54,19 @@ public class Animal {
 		this.typesSet = typesSet;
 	}
 
-	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
-			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, String fligth)
+
+	@Override
+	public void validateAtributes(long exhibitNumber, double height, double weight, double length)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
 			InvalidLengthException {
-
-		validateAtributes(exhibitNumber, height, weight, length);
-
-		this.gender = gender;
-		this.offSpring = offSpring;
-		this.height = height;
-		this.weight = weigth;
-		this.length = length;
-		this.dateOfBirth = dateOfBirth;
-		this.dateOfArrival = dateOfArrival;
-		this.vaccineMap = new HashMap<>();
-		this.medicationMap = new HashMap<>();
-		this.exhibitNumber = exhibitNumber;
-
-		new Animal.Avian(fligth);
-
-	}
-
-	private void validateAtributes(long exhibitNumber, double height, double weight, double length)
-			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
-			InvalidLengthException {
+	
 		utils.Validate.validateExhibitNumber(exhibitNumber);
 		utils.Validate.validateHeigh(height);
 		utils.Validate.validateWeight(weight);
 		utils.Validate.validateLength(length);
+		
 	}
 
-	public static class Avian {
-
-		public static String flight;
-
-		public Avian(String flight) {
-
-			Avian.flight = flight;
-		}
-	}
-
-	public String getFlight() {
-		try {
-			if (Avian.flight != null) {
-
-				return Avian.flight;
-
-			} else {
-
-				throw new NullPointerException("This animal isn't an Avian!");
-
-			}
-		} catch (NullPointerException exception) {
-
-			return exception.getMessage();
-
-		}
-	}
 
 	public double getHeight() {
 		return this.height;
@@ -247,5 +203,7 @@ public class Animal {
 			return false;
 		return true;
 	}
+
+	
 
 }

@@ -5,8 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 import cctZoo.enums.AnimalType;
+import interfaces.ZooKeeperInterface;
 
-public class ZooKeeper {
+public class ZooKeeper implements ZooKeeperInterface {
 
 	final private int MAX_TYPES = 3;
 	final private int NUMBER_OF_ANIMALS = 10;
@@ -63,9 +64,31 @@ public class ZooKeeper {
 		return "Animal cadastrado!";
 	}
 	
+
+	public Animal desalocarAnimal(long id) {
+		
+		Animal animal = null;
+		
+		if (animaisSobGuarda.containsKey(id)) {
+			
+			animal = animaisSobGuarda.get(id);
+			
+		} if (animal == null) {
+			
+			throw new IllegalArgumentException("Unknown key!");
+		
+		} else {
+			
+			return animal;
+		}
+		 
+	}
 	
-	private boolean typesExceedSize(Set<AnimalType> animalTypes) {
+	@Override
+	public boolean typesExceedSize(Set<AnimalType> animalTypes) {
+		
 		return (animalTypes.size() + this.types.size()) <= MAX_TYPES;
+		
 	}
 	
 	private boolean containsTypesAnimal(Set<AnimalType> animalTypes) {
@@ -105,16 +128,8 @@ public class ZooKeeper {
 		return animaisSobGuarda;
 	}
 
-	public void setAnimaisSobGuarda(Map<Long, Animal> animaisSobGuarda) {
-		this.animaisSobGuarda = animaisSobGuarda;
-	}
-
 	public Set<AnimalType> getTypes() {
 		return types;
-	}
-
-	public void setTypes(Set<AnimalType> types) {
-		this.types = types;
 	}
 
 	public String getName() {
@@ -125,8 +140,5 @@ public class ZooKeeper {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 }
