@@ -1,3 +1,4 @@
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,10 +15,10 @@ public class Animal {
 	private Set<Vaccine> vaccineSet;
 	private Set<Medication> medicationSet;
 	private long exhibitNumber;
-	private AnimalType type;
+	private Set<AnimalType> typesSet;
 
 	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
-			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
+			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet) {
 
 		this.gender = gender;
 		this.offSpring = offSpring;
@@ -29,6 +30,7 @@ public class Animal {
 		this.vaccineSet = new HashSet<>();
 		this.medicationSet = new HashSet<>();
 		this.exhibitNumber = exhibitNumber;
+		this.typesSet = typesSet;
 	}
 
 	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
@@ -121,8 +123,8 @@ public class Animal {
 		return this.exhibitNumber;
 	}
 
-	public AnimalType getType() {
-		return this.type;
+	public Set<AnimalType> getTypes() {
+		return this.typesSet;
 	}
 
 	public Set<Medication> getMedicationSet() {
