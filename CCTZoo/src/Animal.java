@@ -112,15 +112,17 @@ public class Animal {
 		return this.height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(double height) throws InvalidHeightException {
+		utils.Validate.validateHeigh(height);
 		this.height = height;
 	}
 
-	public double getWeigth() {
+	public double getWeight() {
 		return this.weight;
 	}
 
-	public void setWeigth(double weigth) {
+	public void setWeight(double weigth) throws InvalidWeightException {
+		utils.Validate.validateWeight(weigth);
 		this.weight = weigth;
 	}
 
@@ -128,7 +130,8 @@ public class Animal {
 		return this.length;
 	}
 
-	public void setLength(double length) {
+	public void setLength(double length) throws InvalidLengthException {
+		utils.Validate.validateLength(length);
 		this.length = length;
 	}
 
