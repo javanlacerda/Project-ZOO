@@ -1,6 +1,6 @@
-package Exceptions.Animal;
+package exceptions;
 
-public class InvalidHeightException extends Exception {
+public final class InvalidHeightException extends Exception {
 
 	/**
 	 * 

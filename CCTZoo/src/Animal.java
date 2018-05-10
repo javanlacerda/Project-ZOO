@@ -1,12 +1,19 @@
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
-import Exceptions.Animal.InvalidExhibitNumberException;
-import Exceptions.Animal.InvalidHeightException;
-import Exceptions.Animal.InvalidLengthException;
-import Exceptions.Animal.InvalidWeightException;
+import exceptions.InexistentMedicationException;
+import exceptions.InexistentVaccineException;
+import exceptions.InvalidActivePrincipleException;
+import exceptions.InvalidDosageException;
+import exceptions.InvalidExhibitNumberException;
+import exceptions.InvalidHeightException;
+import exceptions.InvalidIdException;
+import exceptions.InvalidLengthException;
+import exceptions.InvalidNameException;
+import exceptions.InvalidWeightException;
 
 public class Animal {
 
@@ -17,8 +24,8 @@ public class Animal {
 	private double length;
 	private LocalDate dateOfBirth;
 	private LocalDate dateOfArrival;
-	private Set<Vaccine> vaccineSet;
-	private Set<Medication> medicationSet;
+	private Map<Long,Vaccine> vaccineMap;
+	private Map<Long,Medication> medicationMap;
 	private long exhibitNumber;
 	private Set<AnimalType> typesSet;
 
@@ -36,8 +43,8 @@ public class Animal {
 		this.length = length;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfArrival = dateOfArrival;
-		this.vaccineSet = new HashSet<>();
-		this.medicationSet = new HashSet<>();
+		this.vaccineMap = new HashMap<>();
+		this.medicationMap = new HashMap<>();
 		this.exhibitNumber = exhibitNumber;
 		this.typesSet = typesSet;
 	}
@@ -56,8 +63,8 @@ public class Animal {
 		this.length = length;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfArrival = dateOfArrival;
-		this.vaccineSet = new HashSet<>();
-		this.medicationSet = new HashSet<>();
+		this.vaccineMap = new HashMap<>();
+		this.medicationMap = new HashMap<>();
 		this.exhibitNumber = exhibitNumber;
 
 		new Animal.Avian(fligth);
@@ -67,10 +74,10 @@ public class Animal {
 	private void validateAtributes(long exhibitNumber, double height, double weight, double length)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
 			InvalidLengthException {
-		Utils.Validate.validateExhibitNumber(exhibitNumber);
-		Utils.Validate.validateHeigh(height);
-		Utils.Validate.validateWeight(weight);
-		Utils.Validate.validateLength(length);
+		utils.Validate.validateExhibitNumber(exhibitNumber);
+		utils.Validate.validateHeigh(height);
+		utils.Validate.validateWeight(weight);
+		utils.Validate.validateLength(length);
 	}
 
 	public static class Avian {
@@ -149,13 +156,57 @@ public class Animal {
 		return this.typesSet;
 	}
 
-	public Set<Medication> getMedicationSet() {
-		return this.medicationSet;
+	public long addMedication(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage) throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+		Medication medication = new Medication(name, id, activePrinciple, aplicattionDate, dosage);
+		medicationMap.put(id,medication);
+		return id;
 	}
 
-	public Set<Vaccine> getVaccineSet() {
-		return this.vaccineSet;
+	public long addVacine(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage) throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+		Vaccine vaccine = new Vaccine(name, id, activePrinciple, aplicattionDate, dosage);
+		vaccineMap.put(id,vaccine);
+		return id;
 	}
+	
+	public void removeMedication (long id) throws InexistentMedicationException {
+		if (!medicationMap.containsKey(id))
+			throw new InexistentMedicationException();
+		medicationMap.remove(id);
+	}
+	
+	public void removeVaccine (long id) throws InexistentVaccineException {
+		if(!vaccineMap.containsKey(id))
+			throw new InexistentVaccineException();
+		 vaccineMap.remove(id);
+	}
+	
+
+	public String getListingOfMedications() {
+		String listing = "";
+
+		if (medicationMap.isEmpty())
+			listing = "No medication registered!";
+		else
+			for (Medication medication : medicationMap.values())
+				listing += medication.toString() + utils.Auxiliar.BREAK_LINE;
+
+		return listing;
+
+	}
+
+	public String getListingOfVaccines() {
+		String listing = "";
+
+		if (vaccineMap.isEmpty())
+			listing = "No Vaccine registered!";
+		else
+			for (Vaccine vaccine : vaccineMap.values())
+				listing += vaccine.toString() + utils.Auxiliar.BREAK_LINE;
+
+		return listing;
+	}
+
+
 
 	@Override
 	public int hashCode() {

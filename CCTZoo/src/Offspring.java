@@ -1,23 +1,37 @@
 
 public class Offspring {
 	
-	private Animal father;
-	private Animal mother;
+	private long fatherExhibitNumber;
+	private long motherExhibitNumber;
 	
 	
-	public Offspring(Animal father,Animal mother) {
-		this.father = father;
-		this.mother = mother;
+	public Offspring(long fatherExhibitNumber,long motherExhibitNumber) {
+		this.fatherExhibitNumber = fatherExhibitNumber;
+		this.motherExhibitNumber = motherExhibitNumber;
 	}
 
 
-	public Animal getFather() {
-		return father;
+	public Offspring() {
 	}
 
 
-	public Animal getMother() {
-		return mother;
+	public long getFatherExhibitNumber() {
+		return fatherExhibitNumber;
+	}
+
+
+	public void setFatherExhibitNumber(long fatherExhibitNumber) {
+		this.fatherExhibitNumber = fatherExhibitNumber;
+	}
+
+
+	public long getMotherExhibitNumber() {
+		return motherExhibitNumber;
+	}
+
+
+	public void setMotherExhibitNumber(long motherExhibitNumber) {
+		this.motherExhibitNumber = motherExhibitNumber;
 	}
 
 
@@ -25,8 +39,8 @@ public class Offspring {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((father == null) ? 0 : father.hashCode());
-		result = prime * result + ((mother == null) ? 0 : mother.hashCode());
+		result = prime * result + (int) (fatherExhibitNumber ^ (fatherExhibitNumber >>> 32));
+		result = prime * result + (int) (motherExhibitNumber ^ (motherExhibitNumber >>> 32));
 		return result;
 	}
 
@@ -40,18 +54,15 @@ public class Offspring {
 		if (getClass() != obj.getClass())
 			return false;
 		Offspring other = (Offspring) obj;
-		if (father == null) {
-			if (other.father != null)
-				return false;
-		} else if (!father.equals(other.father))
+		if (fatherExhibitNumber != other.fatherExhibitNumber)
 			return false;
-		if (mother == null) {
-			if (other.mother != null)
-				return false;
-		} else if (!mother.equals(other.mother))
+		if (motherExhibitNumber != other.motherExhibitNumber)
 			return false;
 		return true;
 	}
+
+
+	
 	
 	
 	

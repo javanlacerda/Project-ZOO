@@ -1,5 +1,10 @@
 import java.time.LocalDate;
 
+import exceptions.InvalidActivePrincipleException;
+import exceptions.InvalidDosageException;
+import exceptions.InvalidIdException;
+import exceptions.InvalidNameException;
+
 public class Medication {
 
 	private String name;
@@ -8,12 +13,22 @@ public class Medication {
 	private LocalDate aplicattionDate;
 	private int dosage;
 
-	public Medication(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage) {
+	public Medication(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage)
+			throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+		validateAtributes(name, id, activePrinciple, dosage);
 		this.name = name;
 		this.id = id;
 		this.activePrinciple = activePrinciple;
 		this.aplicattionDate = aplicattionDate;
 		this.dosage = dosage;
+	}
+
+	private void validateAtributes(String name, long id, String activePrinciple, int dosage)
+			throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+		utils.Validate.validateId(id);
+		utils.Validate.validateName(name);
+		utils.Validate.validateActivePrinciple(activePrinciple);
+		utils.Validate.validateDosage(dosage);
 	}
 
 	public String getName() {
@@ -68,10 +83,10 @@ public class Medication {
 
 	@Override
 	public String toString() {
-		String breakLine = System.lineSeparator();
-		return "Name: " + this.name + breakLine + "ID: " + this.id + breakLine + "Active Principle: "
-				+ this.activePrinciple + breakLine + "Aplicattion Date: " + this.aplicattionDate.toString() + breakLine
-				+ "Dosage: " + this.dosage + breakLine;
+		return "Name: " + this.name + utils.Auxiliar.BREAK_LINE + "ID: " + this.id + utils.Auxiliar.BREAK_LINE
+				+ "Active Principle: " + this.activePrinciple + utils.Auxiliar.BREAK_LINE + "Aplicattion Date: "
+				+ this.aplicattionDate.toString() + utils.Auxiliar.BREAK_LINE + "Dosage: " + this.dosage
+				+ utils.Auxiliar.BREAK_LINE;
 	}
 
 }

@@ -1,6 +1,6 @@
-package Exceptions.Animal;
+package exceptions;
 
-public class InvalidLengthException extends Exception {
+public final class InvalidLengthException extends Exception {
 
 	/**
 	 * 
