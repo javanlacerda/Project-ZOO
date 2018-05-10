@@ -9,6 +9,8 @@ import cctZoo.entities.Animal;
 import cctZoo.entities.Offspring;
 import cctZoo.enums.AnimalType;
 import cctZoo.enums.Gender;
+import exceptions.InexistentMedicationException;
+import exceptions.InexistentVaccineException;
 import exceptions.InvalidActivePrincipleException;
 import exceptions.InvalidDosageException;
 import exceptions.InvalidExhibitNumberException;
@@ -68,7 +70,7 @@ public class AnimalsController {
 			animalsMap.put(animal.getExhibitNumber(), animal);
 		} catch (InvalidExhibitNumberException | InvalidHeightException | InvalidWeightException
 				| InvalidLengthException e) {
-			status = e.getMessage();
+			status = e.toString();
 		}
 
 		return status;
@@ -89,7 +91,49 @@ public class AnimalsController {
 				status = "Medication added with Sucessfull!";
 			} catch (InvalidIdException | InvalidNameException | InvalidActivePrincipleException
 					| InvalidDosageException e) {
-				status = e.getMessage();
+				status = e.toString();
+			}
+		}
+
+		else {
+			status = "Inexistent Animal!";
+		}
+		return status;
+
+	}
+
+	public String removeMedication(long animalExhibitNumber, String name, long id) {
+		String status;
+
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+
+			try {
+				animal.removeMedication(id);
+				status = "Medication removed with Sucessfull!";
+			} catch (InexistentMedicationException e) {
+				status = e.toString();
+			}
+		}
+
+		else {
+			status = "Inexistent Animal!";
+		}
+		return status;
+
+	}
+
+	public String removeVaccine(long animalExhibitNumber, String name, long id) {
+		String status;
+
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+
+			try {
+				animal.removeVaccine(id);
+				status = "Medication removed with Sucessfull!";
+			} catch (InexistentVaccineException e) {
+				status = e.toString();
 			}
 		}
 
@@ -113,7 +157,7 @@ public class AnimalsController {
 				status = "Vaccine added with Sucessfull!";
 			} catch (InvalidIdException | InvalidNameException | InvalidActivePrincipleException
 					| InvalidDosageException e) {
-				status = e.getMessage();
+				status = e.toString();
 			}
 		}
 
@@ -133,7 +177,7 @@ public class AnimalsController {
 				animal.setHeight(newHeight);
 				status = "Height updated with Sucessfull!";
 			} catch (InvalidHeightException e) {
-				status = e.getMessage();
+				status = e.toString();
 			}
 
 		}
@@ -155,7 +199,7 @@ public class AnimalsController {
 				animal.setWeight(newWeight);
 				status = "Weight updated with Sucessfull!";
 			} catch (InvalidWeightException e) {
-				status = e.getMessage();
+				status = e.toString();
 			}
 
 		}
@@ -177,7 +221,7 @@ public class AnimalsController {
 				animal.setLength(newLength);
 				status = "Length updated with Sucessfull!";
 			} catch (InvalidLengthException e) {
-				status = e.getMessage();
+				status = e.toString();
 			}
 
 		}
@@ -210,7 +254,26 @@ public class AnimalsController {
 				father = animalsMap.get(animal.getFatherExhibitiNumber());
 				fatherInfo = father.toString();
 			} catch (UndefinedOffspringException e) {
-				fatherInfo = e.getMessage();
+				fatherInfo = e.toString();
+			}
+
+		} else
+			fatherInfo = "Inexistent Animal!";
+
+		return fatherInfo;
+	}
+
+	public String getMotherInfo(long animalExhibitNumber) {
+		String fatherInfo;
+
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+			Animal mother;
+			try {
+				mother = animalsMap.get(animal.getMotherExhibitiNumber());
+				fatherInfo = mother.toString();
+			} catch (UndefinedOffspringException e) {
+				fatherInfo = e.toString();
 			}
 
 		} else
@@ -221,6 +284,30 @@ public class AnimalsController {
 
 	private boolean hasAnimal(long exhibitNumber) {
 		return animalsMap.containsKey(exhibitNumber);
+	}
+
+	public String getListingOfMedications(long animalExhibitNumber) {
+		String listing;
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+			listing = animal.getListingOfMedications();
+		} else {
+			listing = "Inexistent Animal!";
+		}
+
+		return listing;
+	}
+
+	public String getListingOfVaccines(long animalExhibitNumber) {
+		String listing;
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+			listing = animal.getListingOfVaccines();
+		} else {
+			listing = "Inexistent Animal!";
+		}
+
+		return listing;
 	}
 
 }
