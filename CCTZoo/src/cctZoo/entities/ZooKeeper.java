@@ -1,7 +1,10 @@
+package cctZoo.entities;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import cctZoo.enums.AnimalType;
 
 public class ZooKeeper {
 

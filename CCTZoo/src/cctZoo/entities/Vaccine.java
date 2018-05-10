@@ -1,4 +1,10 @@
+package cctZoo.entities;
 import java.time.LocalDate;
+
+import exceptions.InvalidActivePrincipleException;
+import exceptions.InvalidDosageException;
+import exceptions.InvalidIdException;
+import exceptions.InvalidNameException;
 
 public class Vaccine {
 
@@ -8,12 +14,21 @@ public class Vaccine {
 	private LocalDate aplicattionDate;
 	private int dosage;
 
-	public Vaccine(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage) {
+	public Vaccine(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage) throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+		validateAtributes(name, id, activePrinciple, dosage);
 		this.name = name;
 		this.id = id;
 		this.activePrinciple = activePrinciple;
 		this.aplicattionDate = aplicattionDate;
 		this.dosage = dosage;
+	}
+	
+	private void validateAtributes(String name, long id, String activePrinciple, int dosage)
+			throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+		utils.Validate.validateId(id);
+		utils.Validate.validateName(name);
+		utils.Validate.validateActivePrinciple(activePrinciple);
+		utils.Validate.validateDosage(dosage);
 	}
 
 	public String getName() {

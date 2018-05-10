@@ -1,3 +1,4 @@
+package cctZoo.enums;
 
 
 public enum AnimalType {

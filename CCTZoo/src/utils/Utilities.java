@@ -1,3 +1,4 @@
+package utils;
 /**
  * Auxílios que podem ser úteis durante o desenvolvimento do projeto.
  */
