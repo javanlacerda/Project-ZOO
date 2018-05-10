@@ -1,4 +1,4 @@
-package Interfaces;
+package interfaces;
 
 import java.time.LocalDate;
 import java.util.Set;

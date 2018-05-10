@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import Interfaces.AnimalInterface;
 import cctZoo.enums.AnimalType;
 import cctZoo.enums.Gender;
 import exceptions.InexistentMedicationException;
@@ -19,6 +18,7 @@ import exceptions.InvalidLengthException;
 import exceptions.InvalidNameException;
 import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
+import interfaces.AnimalInterface;
 
 public class Animal implements AnimalInterface{
 
