@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class ZooKeeper {
 
-	final private int maxTypes = 3;
-	final private int numberOfAnimals = 10;
+	final private int MAX_TYPES = 3;
+	final private int NUMBER_OF_ANIMALS = 10;
 
 	private boolean qualificado;
 	private Map<Long, Animal> animaisSobGuarda;
@@ -35,12 +35,12 @@ public class ZooKeeper {
 
 	public void alocarAnimal(Animal animal) throws Exception {
 
-		if (types.size() < maxTypes || types.contains(animal.getType())) {
+		if ((types.size() < MAX_TYPES ||  containsTypesAnimal(animal.getTypes())) && !typesExceedSize(animal.getTypes())) {
 
-			if (animaisSobGuarda.size() < numberOfAnimals) {
+			if (animaisSobGuarda.size() < NUMBER_OF_ANIMALS) {
 
 				animaisSobGuarda.put(animal.getExhibitNumber(), animal);
-				types.add(animal.getType());
+				types.addAll(animal.getTypes());
 
 			} else {
 
@@ -51,6 +51,21 @@ public class ZooKeeper {
 			throw new Exception("Numeber of types exceded!");
 		}
 
+	}
+	
+	
+	private boolean typesExceedSize(Set<AnimalType> animalTypes) {
+		return (animalTypes.size() + this.types.size()) <= MAX_TYPES;
+	}
+	
+	private boolean containsTypesAnimal(Set<AnimalType> animalTypes) {
+		
+		for(AnimalType type: animalTypes) {
+			
+			if (!types.contains(type))
+				return false;
+		}
+		return true;
 	}
 	
 
