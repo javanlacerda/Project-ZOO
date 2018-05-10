@@ -33,9 +33,11 @@ public class ZooKeeper {
 		return this.qualificado;
 	}
 
-	public void alocarAnimal(Animal animal) throws Exception {
+	public String alocarAnimal(Animal animal) {
 
-		if ((types.size() < MAX_TYPES ||  containsTypesAnimal(animal.getTypes())) && !typesExceedSize(animal.getTypes())) {
+		try {
+			
+		if ((types.size() < MAX_TYPES || containsTypesAnimal(animal.getTypes())) && !typesExceedSize(animal.getTypes())) {
 
 			if (animaisSobGuarda.size() < NUMBER_OF_ANIMALS) {
 
@@ -44,13 +46,18 @@ public class ZooKeeper {
 
 			} else {
 
-				throw new Exception("Number of animals exceded!");
+				throw new RuntimeException("Number of animals exceded!");
 			}
 		} else {
 
-			throw new Exception("Numeber of types exceded!");
+			throw new RuntimeException("Numeber of types exceded!");
 		}
-
+		} catch (RuntimeException exception) {
+			
+			return exception.getMessage();
+		}
+		
+		return "Animal cadastrado!";
 	}
 	
 	

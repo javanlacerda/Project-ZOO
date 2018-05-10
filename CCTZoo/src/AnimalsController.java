@@ -22,6 +22,7 @@ public class AnimalsController {
 		this.exhibitNumber = 0;
 	}
 
+
 	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
 			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet) {
 
@@ -113,6 +114,8 @@ public class AnimalsController {
 		}
 		return status;
 	}
+	
+
 
 	private boolean hasAnimal(long exhibitNumber) {
 		return animalsMap.containsKey(exhibitNumber);
