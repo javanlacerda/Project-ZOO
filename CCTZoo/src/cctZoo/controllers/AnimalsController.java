@@ -197,6 +197,18 @@ public class AnimalsController {
 
 		return info;
 	}
+	
+	public getFatherInfo(long animalExhibitNumber ) {
+		String  fatherInfo;
+		
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+			Animal father = animalsMap.get(animal.getFatherExhibitiNumber());
+			fatherInfo = father.toString();
+		} else
+			fatherInfo = "Inexistent Animal!";
+		
+	}
 
 	private boolean hasAnimal(long exhibitNumber) {
 		return animalsMap.containsKey(exhibitNumber);

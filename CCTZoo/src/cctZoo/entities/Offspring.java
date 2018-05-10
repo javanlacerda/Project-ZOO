@@ -1,40 +1,39 @@
 package cctZoo.entities;
 
 public class Offspring {
-	
+
 	private long fatherExhibitNumber;
 	private long motherExhibitNumber;
-	
-	
-	public Offspring(long fatherExhibitNumber,long motherExhibitNumber) {
+
+	public Offspring(long fatherExhibitNumber, long motherExhibitNumber) {
 		this.fatherExhibitNumber = fatherExhibitNumber;
 		this.motherExhibitNumber = motherExhibitNumber;
 	}
 
-
 	public Offspring() {
+		this.fatherExhibitNumber = -1;
+		this.motherExhibitNumber = -1;
 	}
-
 
 	public long getFatherExhibitNumber() {
 		return fatherExhibitNumber;
 	}
 
-
 	public void setFatherExhibitNumber(long fatherExhibitNumber) {
 		this.fatherExhibitNumber = fatherExhibitNumber;
 	}
-
 
 	public long getMotherExhibitNumber() {
 		return motherExhibitNumber;
 	}
 
-
 	public void setMotherExhibitNumber(long motherExhibitNumber) {
 		this.motherExhibitNumber = motherExhibitNumber;
 	}
 
+	public boolean isEmpty() {
+		return this.motherExhibitNumber == -1 && this.fatherExhibitNumber == -1;
+	}
 
 	@Override
 	public int hashCode() {
@@ -44,7 +43,6 @@ public class Offspring {
 		result = prime * result + (int) (motherExhibitNumber ^ (motherExhibitNumber >>> 32));
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -61,11 +59,5 @@ public class Offspring {
 			return false;
 		return true;
 	}
-
-
-	
-	
-	
-	
 
 }
