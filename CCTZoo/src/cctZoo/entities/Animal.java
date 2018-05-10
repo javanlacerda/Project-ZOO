@@ -17,6 +17,7 @@ import exceptions.InvalidIdException;
 import exceptions.InvalidLengthException;
 import exceptions.InvalidNameException;
 import exceptions.InvalidWeightException;
+import exceptions.UndefinedOffspringException;
 
 public class Animal {
 
@@ -27,8 +28,8 @@ public class Animal {
 	private double length;
 	private LocalDate dateOfBirth;
 	private LocalDate dateOfArrival;
-	private Map<Long,Vaccine> vaccineMap;
-	private Map<Long,Medication> medicationMap;
+	private Map<Long, Vaccine> vaccineMap;
+	private Map<Long, Medication> medicationMap;
 	private long exhibitNumber;
 	private Set<AnimalType> typesSet;
 
@@ -142,8 +143,20 @@ public class Animal {
 		return this.gender;
 	}
 
-	public Offspring getOffSpring() {
-		return this.offSpring;
+	public long getFatherExhibitiNumber() throws UndefinedOffspringException {
+		if (this.offSpring.isEmpty())
+			throw new UndefinedOffspringException();
+		else {
+			return this.offSpring.getFatherExhibitNumber();
+		}
+	}
+
+	public long getMotherExhibitiNumber() throws UndefinedOffspringException {
+		if (this.offSpring.isEmpty())
+			throw new UndefinedOffspringException();
+		else {
+			return this.offSpring.getMotherExhibitNumber();
+		}
 	}
 
 	public LocalDate getDateOfBirth() {
@@ -162,30 +175,31 @@ public class Animal {
 		return this.typesSet;
 	}
 
-	public long addMedication(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage) throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+	public long addMedication(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage)
+			throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
 		Medication medication = new Medication(name, id, activePrinciple, aplicattionDate, dosage);
-		medicationMap.put(id,medication);
+		medicationMap.put(id, medication);
 		return id;
 	}
 
-	public long addVacine(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage) throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
+	public long addVacine(String name, long id, String activePrinciple, LocalDate aplicattionDate, int dosage)
+			throws InvalidIdException, InvalidNameException, InvalidActivePrincipleException, InvalidDosageException {
 		Vaccine vaccine = new Vaccine(name, id, activePrinciple, aplicattionDate, dosage);
-		vaccineMap.put(id,vaccine);
+		vaccineMap.put(id, vaccine);
 		return id;
 	}
-	
-	public void removeMedication (long id) throws InexistentMedicationException {
+
+	public void removeMedication(long id) throws InexistentMedicationException {
 		if (!medicationMap.containsKey(id))
 			throw new InexistentMedicationException();
 		medicationMap.remove(id);
 	}
-	
-	public void removeVaccine (long id) throws InexistentVaccineException {
-		if(!vaccineMap.containsKey(id))
+
+	public void removeVaccine(long id) throws InexistentVaccineException {
+		if (!vaccineMap.containsKey(id))
 			throw new InexistentVaccineException();
-		 vaccineMap.remove(id);
+		vaccineMap.remove(id);
 	}
-	
 
 	public String getListingOfMedications() {
 		String listing = "";
@@ -211,8 +225,6 @@ public class Animal {
 
 		return listing;
 	}
-
-
 
 	@Override
 	public int hashCode() {

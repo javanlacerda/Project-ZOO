@@ -1,4 +1,5 @@
 package cctZoo.controllers;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import exceptions.InvalidIdException;
 import exceptions.InvalidLengthException;
 import exceptions.InvalidNameException;
 import exceptions.InvalidWeightException;
+import exceptions.UndefinedOffspringException;
 
 public class AnimalsController {
 
@@ -196,6 +198,25 @@ public class AnimalsController {
 			info = "Inexistent Animal!";
 
 		return info;
+	}
+
+	public String getFatherInfo(long animalExhibitNumber) {
+		String fatherInfo;
+
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+			Animal father;
+			try {
+				father = animalsMap.get(animal.getFatherExhibitiNumber());
+				fatherInfo = father.toString();
+			} catch (UndefinedOffspringException e) {
+				fatherInfo = e.getMessage();
+			}
+
+		} else
+			fatherInfo = "Inexistent Animal!";
+
+		return fatherInfo;
 	}
 
 	private boolean hasAnimal(long exhibitNumber) {
