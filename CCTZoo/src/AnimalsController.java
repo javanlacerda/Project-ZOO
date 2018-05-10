@@ -15,6 +15,8 @@ public class AnimalsController {
 	public long addAnimal(String name, Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber) {
 		
+		return (Long) null;
+		
 	}
 	
 	
