@@ -20,8 +20,9 @@ import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
 import interfaces.AnimalInterface;
 
-public class Animal implements AnimalInterface{
+public abstract class Animal implements AnimalInterface {
 
+	private boolean fligth = false;
 	private Gender gender;
 	private Offspring offSpring;
 	private double height;
@@ -54,19 +55,42 @@ public class Animal implements AnimalInterface{
 		this.typesSet = typesSet;
 	}
 
+	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
+			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet,
+			boolean fligth) throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
+			InvalidLengthException {
+
+		validateAtributes(exhibitNumber, height, weight, length);
+
+		this.gender = gender;
+		this.offSpring = offSpring;
+		this.height = height;
+		this.weight = weigth;
+		this.length = length;
+		this.dateOfBirth = dateOfBirth;
+		this.dateOfArrival = dateOfArrival;
+		this.vaccineMap = new HashMap<>();
+		this.medicationMap = new HashMap<>();
+		this.exhibitNumber = exhibitNumber;
+		this.typesSet = typesSet;
+		this.fligth = fligth;
+	}
+
+	public boolean isFligth() {
+		return fligth;
+	}
 
 	@Override
 	public void validateAtributes(long exhibitNumber, double height, double weight, double length)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
 			InvalidLengthException {
-	
+
 		utils.Validate.validateExhibitNumber(exhibitNumber);
 		utils.Validate.validateHeigh(height);
 		utils.Validate.validateWeight(weight);
 		utils.Validate.validateLength(length);
-		
-	}
 
+	}
 
 	public double getHeight() {
 		return this.height;
@@ -203,7 +227,5 @@ public class Animal implements AnimalInterface{
 			return false;
 		return true;
 	}
-
-	
 
 }
