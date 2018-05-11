@@ -1,6 +1,7 @@
 package cctZoo.entities;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -227,5 +228,22 @@ public class Animal implements AnimalInterface {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Animal: " + utils.Auxiliar.BREAK_LINE +
+				"Flight: " + fligth + utils.Auxiliar.BREAK_LINE +
+				"Gender: " + gender + utils.Auxiliar.BREAK_LINE +
+				"Height: " + height + utils.Auxiliar.BREAK_LINE + 
+				"Weight: " + weight + utils.Auxiliar.BREAK_LINE + 
+				"Length: " + length + utils.Auxiliar.BREAK_LINE + 
+				"Date of Birth: " + dateOfBirth.toString() + utils.Auxiliar.BREAK_LINE +
+				"Date of Arrival: " + dateOfArrival.toString() + utils.Auxiliar.BREAK_LINE +
+				"Exhibit Number: " + exhibitNumber + utils.Auxiliar.BREAK_LINE +
+				"Types: " + Arrays.toString(typesSet.toArray()) + utils.Auxiliar.BREAK_LINE;
+				
+	}
+	
+	
 
 }
