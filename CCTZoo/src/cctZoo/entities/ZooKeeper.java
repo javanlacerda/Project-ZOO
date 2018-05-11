@@ -133,8 +133,12 @@ public class ZooKeeper implements ZooKeeperInterface {
 
 	@Override
 	public String toString() {
+		String qualified;
+
+		if (isQualified()) qualified = "Yes"; else qualified = "No";
+
 		return "Name: " + this.name + Auxiliar.BREAK_LINE + "ID: " + this.id + Auxiliar.BREAK_LINE + "Qualified: "
-				+ isQualified() + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated();
+				+ qualified + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated();
 
 	}
 

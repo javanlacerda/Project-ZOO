@@ -231,8 +231,13 @@ public class Animal implements AnimalInterface {
 
 	@Override
 	public String toString() {
+		
+		String flight;
+		
+		if(fligth) flight = "Yes"; else flight = "No";
+		
 		return "Animal: " + utils.Auxiliar.BREAK_LINE +
-				"Flight: " + fligth + utils.Auxiliar.BREAK_LINE +
+				"Flight: " + flight + utils.Auxiliar.BREAK_LINE +
 				"Gender: " + gender + utils.Auxiliar.BREAK_LINE +
 				"Height: " + height + utils.Auxiliar.BREAK_LINE + 
 				"Weight: " + weight + utils.Auxiliar.BREAK_LINE + 
