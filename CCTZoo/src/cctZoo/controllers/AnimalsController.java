@@ -309,5 +309,14 @@ public class AnimalsController {
 
 		return listing;
 	}
+	
+	
+	public String listAnimals() {
+		String listing = "No Animals registered!";
+		
+		
+		
+		return listing;
+	}
 
 }
