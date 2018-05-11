@@ -20,7 +20,7 @@ import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
 import interfaces.AnimalInterface;
 
-public abstract class Animal implements AnimalInterface {
+public class Animal implements AnimalInterface {
 
 	private boolean fligth = false;
 	private Gender gender;
@@ -35,7 +35,7 @@ public abstract class Animal implements AnimalInterface {
 	private long exhibitNumber;
 	private Set<AnimalType> typesSet;
 
-	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
+	public Animal(Gender gender, Offspring offSpring, double height, double weight, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
 			InvalidLengthException {
@@ -45,7 +45,7 @@ public abstract class Animal implements AnimalInterface {
 		this.gender = gender;
 		this.offSpring = offSpring;
 		this.height = height;
-		this.weight = weigth;
+		this.weight = weight;
 		this.length = length;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfArrival = dateOfArrival;
