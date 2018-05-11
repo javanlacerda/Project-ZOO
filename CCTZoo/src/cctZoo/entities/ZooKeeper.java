@@ -1,11 +1,13 @@
 package cctZoo.entities;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import cctZoo.enums.AnimalType;
+import exceptions.InvalidIdException;
+import exceptions.InvalidNameException;
+import exceptions.NumberOfAnimalsExceededException;
+import exceptions.NumberOfTypesExceededException;
 import interfaces.ZooKeeperInterface;
 import utils.Auxiliar;
 
@@ -14,69 +16,69 @@ public class ZooKeeper implements ZooKeeperInterface {
 	final private int MAX_TYPES = 3;
 	final private int NUMBER_OF_ANIMALS = 10;
 
-	private boolean qualificado;
-	private Set<Long> animaisSobGuarda;
+	private boolean qualified;
+	private Set<Long> animalsUnderGuard;
 	private Set<AnimalType> types;
 	private String name;
 	private int id;
 
-	public ZooKeeper(boolean qualificado, String name, int id) {
-		this.animaisSobGuarda = new HashSet<>();
+	public ZooKeeper(boolean qualified, String name, int id) throws InvalidNameException, InvalidIdException {
+		validateAtributes(name, id);
+		this.animalsUnderGuard = new HashSet<>();
 		this.types = new HashSet<>();
-		this.qualificado = qualificado;
+		this.qualified = qualified;
 		this.name = name;
 		this.id = id;
 	}
 
-	public void setQualificado(boolean answer) {
+	private void validateAtributes(String name, int id) throws InvalidNameException, InvalidIdException {
+		utils.Validate.validateName(name);
+		utils.Validate.validateId(id);
+	}
 
-		this.qualificado = answer;
+	public void setQualified(boolean answer) {
+
+		this.qualified = answer;
 
 	}
 
-	public String getQualificado() {
+	public String isQualified() {
 
-		if (this.qualificado)
+		if (this.qualified)
 			return "Yes";
 		else
 			return "No";
 	}
 
-	public String alocarAnimal(Animal animal) {
+	public String alocateAnimal(long animalExhibitId, Set<AnimalType> animalTypes)
+			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException {
 
-		try {
+		if ((types.size() < MAX_TYPES || containsTypesAnimal(animalTypes)) && !typesExceedSize(animalTypes)) {
 
-			if ((types.size() < MAX_TYPES || containsTypesAnimal(animal.getTypes()))
-					&& !typesExceedSize(animal.getTypes())) {
+			if (animalsUnderGuard.size() < NUMBER_OF_ANIMALS) {
 
-				if (animaisSobGuarda.size() < NUMBER_OF_ANIMALS) {
+				animalsUnderGuard.add(animalExhibitId);
+				types.addAll(animalTypes);
 
-					animaisSobGuarda.add(animal.getExhibitNumber());
-					types.addAll(animal.getTypes());
+			} else
 
-				} else {
+				throw new NumberOfAnimalsExceededException();
 
-					throw new RuntimeException("Number of animals exceded!");
-				}
-			} else {
-
-				throw new RuntimeException("Numeber of types exceded!");
-			}
-		} catch (RuntimeException exception) {
-
-			return exception.getMessage();
 		}
 
-		return "Animal cadastrado!";
+		else
+			throw new NumberOfTypesExceededException();
+
+		return "Animal Registered!";
 	}
 
-	public boolean desalocarAnimal(long id) {
+	public boolean deallocateAnimal(long id) {
 
 		boolean result = false;
 
-		if (animaisSobGuarda.contains(id)) {
+		if (animalsUnderGuard.contains(id)) {
 
-			result = animaisSobGuarda.remove(id);
+			result = animalsUnderGuard.remove(id);
 
 		}
 		if (!result) {
@@ -90,8 +92,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 
 	}
 
-	@Override
-	public boolean typesExceedSize(Set<AnimalType> animalTypes) {
+	private boolean typesExceedSize(Set<AnimalType> animalTypes) {
 
 		return (animalTypes.size() + this.types.size()) <= MAX_TYPES;
 
@@ -130,13 +131,13 @@ public class ZooKeeper implements ZooKeeperInterface {
 	}
 
 	public Set<Long> getAnimaisSobGuarda() {
-		return animaisSobGuarda;
+		return animalsUnderGuard;
 	}
 
 	@Override
 	public String toString() {
 		return "Name: " + this.name + Auxiliar.BREAK_LINE + "ID: " + this.id + Auxiliar.BREAK_LINE + "Qualified: "
-				+ getQualificado() + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated();
+				+ isQualified() + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated();
 
 	}
 
@@ -154,7 +155,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 
 	public int getNumberOfAnimalsAlocated() {
 
-		return animaisSobGuarda.size();
+		return animalsUnderGuard.size();
 
 	}
 
