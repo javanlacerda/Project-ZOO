@@ -9,7 +9,7 @@ public interface ZooKeeperInterface {
 
 	void setQualified(boolean answer);
 
-	String isQualified();
+	boolean isQualified();
 
 	String alocateAnimal(long animalExhibitId, Set<AnimalType> animalTypes)
 			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException;
@@ -20,7 +20,7 @@ public interface ZooKeeperInterface {
 
 	boolean equals(Object obj);
 
-	Set<Long> getAnimaisSobGuarda();
+	Set<Long> getAnimalsUnderGuard();
 
 	Set<AnimalType> getTypes();
 

@@ -43,15 +43,53 @@ public class ZooKeepersController {
 		if (hasKeeper(idKeeper)) {
 			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
 
-			try {
-				status = keeper.alocateAnimal(animalExhibitId, animalTypes);
-			} catch (NumberOfAnimalsExceededException | NumberOfTypesExceededException e) {
-				status = e.toString();
-			}
+			if (keeper.isQualified()) {
+
+				try {
+					status = keeper.alocateAnimal(animalExhibitId, animalTypes);
+				} catch (NumberOfAnimalsExceededException | NumberOfTypesExceededException e) {
+					status = e.toString();
+				}
+			} else
+				status = "Keeper Unqualified!";
 
 		}
 
 		else
+			status = "Keeper Unregistered!";
+
+		return status;
+
+	}
+	
+	
+	public String deallocateAnimal(int idKeeper, long animalExhibitId) {
+		String status;
+
+		if (hasKeeper(idKeeper)) {
+			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
+			
+			if(keeper.deallocateAnimal(animalExhibitId))
+				status = "Animal deallocated with Sucessfull!";
+			else
+				status = "Animal not Allocated in this Keeper!";
+		}
+		else
+			status = "Keeper Unregistered!";
+
+		return status;
+		
+	}
+
+	public String setKeeperQualified(int idKeeper, boolean answer) {
+		String status;
+
+		if (hasKeeper(idKeeper)) {
+			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
+			keeper.setQualified(answer);
+			status = "Keeper Qualified updated!";
+
+		} else
 			status = "Keeper Unregistered!";
 
 		return status;

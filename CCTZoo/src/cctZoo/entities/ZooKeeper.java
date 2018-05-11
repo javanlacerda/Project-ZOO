@@ -42,12 +42,9 @@ public class ZooKeeper implements ZooKeeperInterface {
 
 	}
 
-	public String isQualified() {
+	public boolean isQualified() {
 
-		if (this.qualified)
-			return "Yes";
-		else
-			return "No";
+		return this.qualified;
 	}
 
 	public String alocateAnimal(long animalExhibitId, Set<AnimalType> animalTypes)
@@ -72,13 +69,13 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return "Animal Registered!";
 	}
 
-	public boolean deallocateAnimal(long id) {
+	public boolean deallocateAnimal(long animalExhibitId) {
 
 		boolean result = false;
 
-		if (animalsUnderGuard.contains(id)) {
+		if (animalsUnderGuard.contains(animalExhibitId)) {
 
-			result = animalsUnderGuard.remove(id);
+			result = animalsUnderGuard.remove(animalExhibitId);
 
 		}
 		if (!result) {
@@ -130,7 +127,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return true;
 	}
 
-	public Set<Long> getAnimaisSobGuarda() {
+	public Set<Long> getAnimalsUnderGuard() {
 		return animalsUnderGuard;
 	}
 
