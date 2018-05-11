@@ -31,51 +31,51 @@ public class AnimalsController {
 		this.exhibitNumber = 0;
 	}
 
-//	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
-//			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet) {
-//
-//		String status = "Inexistent Father or Mother!";
-//
-//		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
-//
-//			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
-//
-//			Animal animal;
-//
-//			try {
-//				animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
-//						exhibitNumber++, typesSet);
-//				animalsMap.put(animal.getExhibitNumber(), animal);
-//				status = "Animal added with sucessfull!";
-//			} catch (InvalidExhibitNumberException | InvalidHeightException | InvalidWeightException
-//					| InvalidLengthException e) {
-//				status = e.getMessage();
-//			}
-//		}
-//
-//		return status;
-//
-//	}
-//
-//	public String addAnimal(Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
-//			LocalDate dateOfArrival, Set<AnimalType> typesSet) {
-//
-//		String status = "Animal added with sucessfull!";
-//		Offspring offSpring = new Offspring();
-//
-//		Animal animal;
-//		try {
-//			animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber++,
-//					typesSet);
-//			animalsMap.put(animal.getExhibitNumber(), animal);
-//		} catch (InvalidExhibitNumberException | InvalidHeightException | InvalidWeightException
-//				| InvalidLengthException e) {
-//			status = e.toString();
-//		}
-//
-//		return status;
-//
-//	}
+	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
+			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet) {
+
+		String status = "Inexistent Father or Mother!";
+
+		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
+
+			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
+
+			Animal animal;
+
+			try {
+				animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+						exhibitNumber++, typesSet);
+				animalsMap.put(animal.getExhibitNumber(), animal);
+				status = "Animal added with sucessfull!";
+			} catch (InvalidExhibitNumberException | InvalidHeightException | InvalidWeightException
+					| InvalidLengthException e) {
+				status = e.getMessage();
+			}
+		}
+
+		return status;
+
+	}
+
+	public String addAnimal(Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
+			LocalDate dateOfArrival, Set<AnimalType> typesSet) {
+
+		String status = "Animal added with sucessfull!";
+		Offspring offSpring = new Offspring();
+
+		Animal animal;
+		try {
+			animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber++,
+					typesSet);
+			animalsMap.put(animal.getExhibitNumber(), animal);
+		} catch (InvalidExhibitNumberException | InvalidHeightException | InvalidWeightException
+				| InvalidLengthException e) {
+			status = e.toString();
+		}
+
+		return status;
+
+	}
 
 	public String addMedication(long animalExhibitNumber, String name, long id, String activePrinciple,
 			LocalDate aplicattionDate, int dosage) {

@@ -8,11 +8,11 @@ public interface ZooKeeperInterface {
 
 	void setQualificado(boolean answer);
 
-	boolean getQualificado();
+	String getQualificado();
 
 	String alocarAnimal(Animal animal);
 
-	Animal desalocarAnimal(long id);
+	boolean desalocarAnimal(long id);
 
 	boolean typesExceedSize(Set<AnimalType> animalTypes);
 
@@ -20,7 +20,7 @@ public interface ZooKeeperInterface {
 
 	boolean equals(Object obj);
 
-	Map<Long, Animal> getAnimaisSobGuarda();
+	Set<Long> getAnimaisSobGuarda();
 
 	Set<AnimalType> getTypes();
 
