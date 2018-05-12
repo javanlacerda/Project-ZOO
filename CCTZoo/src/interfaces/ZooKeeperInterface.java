@@ -23,7 +23,7 @@ public interface ZooKeeperInterface {
 
 	Set<Long> getAnimalsUnderGuard();
 
-	Set<AnimalType> getTypes();
+
 
 	String getName();
 

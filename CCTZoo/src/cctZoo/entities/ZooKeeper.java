@@ -1,5 +1,6 @@
 package cctZoo.entities;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -123,10 +124,6 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return animalsUnderGuard;
 	}
 
-	public Set<AnimalType> getTypes() {
-		return types;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -135,7 +132,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return id;
 	}
 
-	public int getNumberOfAnimalsAlocated() {
+	private int getNumberOfAnimalsAlocated() {
 
 		return animalsUnderGuard.size();
 
@@ -151,7 +148,8 @@ public class ZooKeeper implements ZooKeeperInterface {
 			qualified = "No";
 
 		return "Name: " + this.name + Auxiliar.BREAK_LINE + "ID: " + this.id + Auxiliar.BREAK_LINE + "Qualified: "
-				+ qualified + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated();
+				+ qualified + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated()
+				+ Auxiliar.BREAK_LINE + "Types of Animal: " + Arrays.toString(types.toArray());
 
 	}
 

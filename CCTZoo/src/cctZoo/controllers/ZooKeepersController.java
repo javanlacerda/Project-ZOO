@@ -118,6 +118,33 @@ public class ZooKeepersController {
 
 	}
 
+	public String getInfo(int idKeeper) {
+		String info;
+
+		if (hasKeeper(idKeeper))
+			info = zooKeepersMap.get(idKeeper).toString();
+
+		else
+			info = "Keeper Unregistered!";
+
+		return info;
+
+	}
+
+	public String listKeepers() {
+		String listing = "";
+
+		if (zooKeepersMap.isEmpty())
+			listing += "No Keepers Registered!";
+		else {
+			for (ZooKeeper keeper : zooKeepersMap.values())
+				listing += keeper.toString();
+		}
+
+		return listing;
+
+	}
+
 	public boolean hasKeeper(int id) {
 		return zooKeepersMap.containsKey(id);
 	}
