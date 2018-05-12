@@ -303,7 +303,7 @@ public class AnimalsController {
 		return fatherInfo;
 	}
 
-	private boolean hasAnimal(long exhibitNumber) {
+	public boolean hasAnimal(long exhibitNumber) {
 		return animalsMap.containsKey(exhibitNumber);
 	}
 
