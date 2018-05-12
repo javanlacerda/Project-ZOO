@@ -118,14 +118,14 @@ public class AnimalsController {
 
 	}
 
-	public String removeMedication(long animalExhibitNumber, String name, long id) {
+	public String removeMedication(long animalExhibitNumber, long medicationId) {
 		String status;
 
 		if (hasAnimal(animalExhibitNumber)) {
 			Animal animal = animalsMap.get(animalExhibitNumber);
 
 			try {
-				animal.removeMedication(id);
+				animal.removeMedication(medicationId);
 				status = "Medication removed with Sucessfull!";
 			} catch (InexistentMedicationException e) {
 				status = "Inexistent Medication!";
@@ -139,7 +139,7 @@ public class AnimalsController {
 
 	}
 
-	public String removeVaccine(long animalExhibitNumber, String name, long id) {
+	public String removeVaccine(long animalExhibitNumber, long id) {
 		String status;
 
 		if (hasAnimal(animalExhibitNumber)) {
