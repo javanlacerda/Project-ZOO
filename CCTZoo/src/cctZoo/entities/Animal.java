@@ -23,7 +23,8 @@ import interfaces.AnimalInterface;
 import utils.Auxiliar;
 
 public class Animal implements AnimalInterface {
-
+	
+	private String specieName;
 	private boolean fligth = false;
 	private Gender gender;
 	private Offspring offSpring;
@@ -37,13 +38,14 @@ public class Animal implements AnimalInterface {
 	private long exhibitNumber;
 	private Set<AnimalType> typesSet;
 
-	public Animal(Gender gender, Offspring offSpring, double height, double weight, double length,
+	public Animal(String specieName,Gender gender, Offspring offSpring, double height, double weight, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
 			InvalidLengthException {
 
 		validateAtributes(exhibitNumber, height, weight, length);
 
+		this.specieName = specieName;
 		this.gender = gender;
 		this.offSpring = offSpring;
 		this.height = height;
@@ -57,13 +59,14 @@ public class Animal implements AnimalInterface {
 		this.typesSet = typesSet;
 	}
 
-	public Animal(Gender gender, Offspring offSpring, double height, double weigth, double length,
+	public Animal(String specieName,Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet,
 			boolean fligth) throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
 			InvalidLengthException {
 
 		validateAtributes(exhibitNumber, height, weight, length);
 
+		this.specieName = specieName;
 		this.gender = gender;
 		this.offSpring = offSpring;
 		this.height = height;

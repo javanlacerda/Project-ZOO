@@ -32,116 +32,73 @@ public class AnimalsController {
 		this.exhibitNumber = 0;
 	}
 
-	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
-			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet) {
-
-		String status = "Inexistent Father or Mother!";
+	public long addAnimal(String name,Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
+			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet)
+			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
+			InvalidLengthException, UndefinedOffspringException {
 
 		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
 
 			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
 
-			Animal animal;
+			Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+					exhibitNumber++, typesSet);
+			animalsMap.put(animal.getExhibitNumber(), animal);
+			return animal.getExhibitNumber();
 
-			try {
-				animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
-						exhibitNumber++, typesSet);
-				animalsMap.put(animal.getExhibitNumber(), animal);
-				status = "Animal added with sucessfull!";
-			} catch (InvalidExhibitNumberException e) {
-				status = "Invalid Exibit Number!";
-			} catch (InvalidHeightException e) {
-				status = "Invalid Height!";
-			} catch (InvalidWeightException e) {
-				status = "Invalid Weight!";
-			} catch (InvalidLengthException e) {
-				status = "Invalid Length!";
-			}
 		}
 
-		return status;
+		else
+			throw new UndefinedOffspringException();
 
 	}
 
-	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
+	public long addAnimal(String name,Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
 			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet,
-			boolean fligth) {
-
-		String status = "Inexistent Father or Mother!";
+			boolean fligth) throws UndefinedOffspringException, InvalidExhibitNumberException, InvalidHeightException,
+			InvalidWeightException, InvalidLengthException {
 
 		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
 
 			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
 
-			Animal animal;
+			Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+					exhibitNumber++, typesSet, fligth);
+			animalsMap.put(animal.getExhibitNumber(), animal);
+			return animal.getExhibitNumber();
 
-			try {
-				animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
-						exhibitNumber++, typesSet, fligth);
-				animalsMap.put(animal.getExhibitNumber(), animal);
-				status = "Animal added with sucessfull!";
-			} catch (InvalidExhibitNumberException e) {
-				status = "Invalid Exibit Number!";
-			} catch (InvalidHeightException e) {
-				status = "Invalid Height!";
-			} catch (InvalidWeightException e) {
-				status = "Invalid Weight!";
-			} catch (InvalidLengthException e) {
-				status = "Invalid Length!";
-			}
 		}
 
-		return status;
+		else
+			throw new UndefinedOffspringException();
 
 	}
 
-	public String addAnimal(Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
-			LocalDate dateOfArrival, Set<AnimalType> typesSet) {
+	public long addAnimal(String name,Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
+			LocalDate dateOfArrival, Set<AnimalType> typesSet) throws InvalidExhibitNumberException,
+			InvalidHeightException, InvalidWeightException, InvalidLengthException {
 
-		String status = "Animal added with sucessfull!";
 		Offspring offSpring = new Offspring();
 
-		Animal animal;
-		try {
-			animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber++,
-					typesSet);
-			animalsMap.put(animal.getExhibitNumber(), animal);
-		} catch (InvalidExhibitNumberException e) {
-			status = "Invalid Exibit Number!";
-		} catch (InvalidHeightException e) {
-			status = "Invalid Height!";
-		} catch (InvalidWeightException e) {
-			status = "Invalid Weight!";
-		} catch (InvalidLengthException e) {
-			status = "Invalid Length!";
-		}
+		Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+				exhibitNumber++, typesSet);
+		animalsMap.put(animal.getExhibitNumber(), animal);
 
-		return status;
+		return animal.getExhibitNumber();
 
 	}
 
-	public String addAnimal(Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
-			LocalDate dateOfArrival, Set<AnimalType> typesSet, boolean fligth) {
+	public long addAnimal(String name,Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
+			LocalDate dateOfArrival, Set<AnimalType> typesSet, boolean fligth) throws InvalidExhibitNumberException,
+			InvalidHeightException, InvalidWeightException, InvalidLengthException {
 
-		String status = "Animal added with sucessfull!";
 		Offspring offSpring = new Offspring();
 
-		Animal animal;
-		try {
-			animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber++,
-					typesSet, fligth);
-			animalsMap.put(animal.getExhibitNumber(), animal);
-		} catch (InvalidExhibitNumberException e) {
-			status = "Invalid Exibit Number!";
-		} catch (InvalidHeightException e) {
-			status = "Invalid Height!";
-		} catch (InvalidWeightException e) {
-			status = "Invalid Weight!";
-		} catch (InvalidLengthException e) {
-			status = "Invalid Length!";
-		}
+		Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+				exhibitNumber++, typesSet, fligth);
+		animalsMap.put(animal.getExhibitNumber(), animal);
 
-		return status;
+		return animal.getExhibitNumber();
 
 	}
 

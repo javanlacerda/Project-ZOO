@@ -12,6 +12,7 @@ import exceptions.InvalidIdException;
 import exceptions.InvalidNameException;
 import exceptions.NumberOfAnimalsExceededException;
 import exceptions.NumberOfTypesExceededException;
+import exceptions.UnqualifiedKeeperException;
 
 public class ZooKeepersController {
 
@@ -43,32 +44,23 @@ public class ZooKeepersController {
 		return status;
 	}
 
-	public String allocateAnimal(int idKeeper, long animalExhibitId, Set<AnimalType> animalTypes) {
-		String status;
+	public void allocateAnimal(int idKeeper, long animalExhibitId, Set<AnimalType> animalTypes) throws UnqualifiedKeeperException, NumberOfAnimalsExceededException, NumberOfTypesExceededException, InexistentKeeperException {
+		
 
 		if (hasKeeper(idKeeper)) {
 			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
-
-			if (keeper.isQualified()) {
-
-				try {
-					status = keeper.alocateAnimal(animalExhibitId, animalTypes);
-				} catch (NumberOfAnimalsExceededException e) {
-					status = "Number of Animals Exceeded!";
-
-				} catch (NumberOfTypesExceededException e) {
-
-					status = "Number of Types Exceeded!";
-				}
-			} else
-				status = "Keeper Unqualified!";
-
+			
+			if (keeper.isQualified()) 
+					keeper.alocateAnimal(animalExhibitId, animalTypes);
+			else 
+				throw new UnqualifiedKeeperException();
 		}
-
+		
 		else
-			status = "Keeper Unregistered!";
+			throw new InexistentKeeperException();
+				
 
-		return status;
+		
 
 	}
 
@@ -161,6 +153,11 @@ public class ZooKeepersController {
 
 		return listing;
 
+	}
+	
+	public boolean canAlocateAnimal (int id, Set<AnimalType> animalTypes) throws InexistentKeeperException, NumberOfAnimalsExceededException, NumberOfTypesExceededException {
+		if (!hasKeeper(id)) throw new InexistentKeeperException();
+		else return zooKeepersMap.get(id).canAllocate(animalTypes);
 	}
 
 	public boolean hasKeeper(int id) {

@@ -140,6 +140,24 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return animalsUnderGuard.contains(animalExhibitId);
 	}
 
+	public boolean canAllocate(Set<AnimalType> animalTypes)
+			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException {
+		if ((types.size() < MAX_TYPES || containsTypesAnimal(animalTypes)) && !typesExceedSize(animalTypes)) {
+
+			if (animalsUnderGuard.size() < NUMBER_OF_ANIMALS) {
+
+				return true;
+
+			} else
+
+				throw new NumberOfAnimalsExceededException();
+
+		}
+
+		else
+			throw new NumberOfTypesExceededException();
+	}
+
 	@Override
 	public String toString() {
 		String qualified;
