@@ -44,13 +44,13 @@ public class Facade {
 	 * @return a string that resulted in the attempt to add
 	 */
 	
-	public String addNewAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
-			double weight, double length, String dateOfBirth, String dateOfArrival, Set<AnimalType> typesSet) {
-
-		 return manager.addAnimal(gender, fatherExhibitNumber, motherExhibitNumber, height,
-					weight, length, dateOfBirth, dateOfArrival, typesSet);
-		
-	}
+//	public String addNewAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
+//			double weight, double length, String dateOfBirth, String dateOfArrival, Set<AnimalType> typesSet) {
+//
+//		 return manager.addAnimal(gender, fatherExhibitNumber, motherExhibitNumber, height,
+//					weight, length, dateOfBirth, dateOfArrival, typesSet);
+//		
+//	}
 	
 	/**
 	 * Adds a new animal in the management system according to these parameters.
@@ -64,14 +64,14 @@ public class Facade {
 	 * @return a string that resulted in the attempt to add
 	 */
 	
-	public String addNewAnimal(Gender gender, double height, double weight, double length, String dateOfBirth,
-			String dateOfArrival, Set<AnimalType> typesSet) {
-
-		return manager.addAnimal(gender, height, weight, length, dateOfBirth,
-				dateOfArrival, typesSet);
-
-	}
-	
+//	public String addNewAnimal(Gender gender, double height, double weight, double length, String dateOfBirth,
+//			String dateOfArrival, Set<AnimalType> typesSet) {
+//
+//		return manager.addAnimal(gender, height, weight, length, dateOfBirth,
+//				dateOfArrival, typesSet);
+//
+//	}
+//	
 	/**
 	 * Adds a new animal in the management system according to these parameters.
 	 * @param gender Gender of the animal

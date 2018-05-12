@@ -27,10 +27,9 @@ public class Main {
 
 		for (String[] animal : reader.run("animals.csv")) {
 			
-			System.out.println(animal[2].trim());
-			//boolean fligth = Boolean.parseBoolean(animal[9].trim());
-			//Long idKeeper = Long.parseLong(animal[0]);
-			//String species = animal[1].trim(); 
+			boolean flight = Boolean.parseBoolean(animal[9].trim());
+			int idKeeper = Integer.parseInt(animal[0]);
+			String species = animal[1].trim(); 
 			Gender gender = Gender.valueOf(animal[2].trim());
 			double height = Double.parseDouble(animal[3].trim());
 			double weight = Double.parseDouble(animal[4].trim());
@@ -41,10 +40,8 @@ public class Main {
 			Set<AnimalType> typesSet = new HashSet<AnimalType>();
 			typesSet.add(AnimalType.valueOf(animal[8].trim()));
 			
-				
 			
-			
-		zManagement.addAnimal(gender, height, weight, length, dateOfBirth, dateOfArrival, typesSet);
+		zManagement.addAnimal(idKeeper,species, gender, height, weight, length, dateOfBirth, dateOfArrival, typesSet, flight);
 
 		}
 		
