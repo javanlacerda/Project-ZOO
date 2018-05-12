@@ -20,6 +20,7 @@ import exceptions.NumberOfAnimalsExceededException;
 import exceptions.NumberOfTypesExceededException;
 import exceptions.UndefinedOffspringException;
 import exceptions.UnqualifiedKeeperException;
+import utils.Auxiliar;
 
 public class ZooManagement {
 
@@ -355,6 +356,33 @@ public class ZooManagement {
 		else {
 			return zKController.setKeeperQualified(idKeeper, answer);
 		}
+	}
+
+	public String getListingOfKeepers() {
+		return zKController.listKeepers();
+	}
+
+	public String searchKeeper(int keeperId) {
+		return zKController.getInfo(keeperId);
+	}
+
+	public String getAnimalsUnderKeepGuard(int keeperId) {
+		String listing = "";
+		Set<Long> animalsUnderGuard;
+
+		try {
+			animalsUnderGuard = zKController.getAnimalsUnderGuard(keeperId);
+		} catch (InexistentKeeperException e) {
+			return "Inexistent Keeper";
+		}
+
+		listing += "Animals Under Guard: " + Auxiliar.BREAK_LINE + Auxiliar.BREAK_LINE;
+
+		for (Long animalExhibitNumber : animalsUnderGuard) {
+			listing += aController.getInfo(animalExhibitNumber) + Auxiliar.BREAK_LINE;
+		}
+
+		return listing;
 	}
 
 }

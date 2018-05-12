@@ -18,7 +18,7 @@ public final class Validate {
 	}
 
 	public static void validateHeigh(double height) throws InvalidHeightException {
-		if (height <= 0)
+		if (height < 0)
 			throw new InvalidHeightException();
 	}
 
@@ -28,7 +28,7 @@ public final class Validate {
 	}
 
 	public static void validateLength(double length) throws InvalidLengthException {
-		if (length <= 0)
+		if (length < 0)
 			throw new InvalidLengthException();
 	}
 
@@ -43,7 +43,7 @@ public final class Validate {
 	}
 
 	public static void validateDosage(int dosage) throws InvalidDosageException {
-		if (dosage <= 0)
+		if (dosage < 0)
 			throw new InvalidDosageException();
 
 	}

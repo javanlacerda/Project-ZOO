@@ -13,6 +13,7 @@ import exceptions.InvalidNameException;
 import exceptions.NumberOfAnimalsExceededException;
 import exceptions.NumberOfTypesExceededException;
 import exceptions.UnqualifiedKeeperException;
+import utils.Auxiliar;
 
 public class ZooKeepersController {
 
@@ -147,6 +148,8 @@ public class ZooKeepersController {
 		if (zooKeepersMap.isEmpty())
 			listing += "No Keepers Registered!";
 		else {
+			
+			listing += "Listing of Zoo Keepers: " + Auxiliar.BREAK_LINE + Auxiliar.BREAK_LINE;
 			for (ZooKeeper keeper : zooKeepersMap.values())
 				listing += keeper.toString();
 		}
