@@ -52,7 +52,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 	public String alocateAnimal(long animalExhibitId, Set<AnimalType> animalTypes)
 			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException {
 
-		if ((types.size() < MAX_TYPES || containsTypesAnimal(animalTypes)) && !typesExceedSize(animalTypes)) {
+		if (!typesExceedSize(animalTypes)) {
 
 			if (animalsUnderGuard.size() < NUMBER_OF_ANIMALS) {
 
@@ -83,24 +83,12 @@ public class ZooKeeper implements ZooKeeperInterface {
 	}
 
 	private boolean typesExceedSize(Set<AnimalType> animalTypes) {
-		
+
 		Set<AnimalType> typesLocal = new HashSet<>(types);
 		typesLocal.addAll(animalTypes);
-		
-		
 
-		return typesLocal.size() <= MAX_TYPES;
+		return !(typesLocal.size() <= MAX_TYPES);
 
-	}
-
-	private boolean containsTypesAnimal(Set<AnimalType> animalTypes) {
-
-		for (AnimalType type : animalTypes) {
-
-			if (!types.contains(type))
-				return false;
-		}
-		return true;
 	}
 
 	@Override
@@ -148,9 +136,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 	public boolean canAllocate(Set<AnimalType> animalTypes)
 			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException {
 		if (!typesExceedSize(animalTypes)) {
-
 			if (animalsUnderGuard.size() < NUMBER_OF_ANIMALS) {
-
 				return true;
 
 			} else
@@ -159,8 +145,11 @@ public class ZooKeeper implements ZooKeeperInterface {
 
 		}
 
-		else
+		else {
+
 			throw new NumberOfTypesExceededException();
+
+		}
 	}
 
 	@Override

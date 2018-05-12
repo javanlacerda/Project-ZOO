@@ -23,7 +23,7 @@ public final class Validate {
 	}
 
 	public static void validateWeight(double weight) throws InvalidWeightException {
-		if (weight <= 0)
+		if (weight < 0.0)
 			throw new InvalidWeightException();
 	}
 
