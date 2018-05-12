@@ -83,8 +83,13 @@ public class ZooKeeper implements ZooKeeperInterface {
 	}
 
 	private boolean typesExceedSize(Set<AnimalType> animalTypes) {
+		
+		Set<AnimalType> typesLocal = new HashSet<>(types);
+		typesLocal.addAll(animalTypes);
+		
+		
 
-		return (animalTypes.size() + this.types.size()) <= MAX_TYPES;
+		return typesLocal.size() <= MAX_TYPES;
 
 	}
 
@@ -142,7 +147,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 
 	public boolean canAllocate(Set<AnimalType> animalTypes)
 			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException {
-		if ((types.size() < MAX_TYPES || containsTypesAnimal(animalTypes)) && !typesExceedSize(animalTypes)) {
+		if (!typesExceedSize(animalTypes)) {
 
 			if (animalsUnderGuard.size() < NUMBER_OF_ANIMALS) {
 

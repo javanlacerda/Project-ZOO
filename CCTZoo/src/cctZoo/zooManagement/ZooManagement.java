@@ -349,4 +349,12 @@ public class ZooManagement {
 		}
 	}
 
+	public String setZooKeeperQualified(int idKeeper, boolean answer) {
+		if (!zKController.hasKeeper(idKeeper))
+			return "Unregistered Keeper";
+		else {
+			return zKController.setKeeperQualified(idKeeper, answer);
+		}
+	}
+
 }
