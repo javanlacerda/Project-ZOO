@@ -6,6 +6,7 @@ import java.util.Set;
 
 import cctZoo.entities.ZooKeeper;
 import cctZoo.enums.AnimalType;
+import exceptions.InexistentKeeperException;
 import exceptions.InvalidIdException;
 import exceptions.InvalidNameException;
 import exceptions.NumberOfAnimalsExceededException;
@@ -30,8 +31,12 @@ public class ZooKeepersController {
 			zKeeper = new ZooKeeper(qualified, name, serialId++);
 			zooKeepersMap.put(zKeeper.getId(), zKeeper);
 			status = "Kepper registered with Sucessfull!";
-		} catch (InvalidNameException | InvalidIdException e) {
-			status = e.toString();
+		} catch (InvalidNameException e) {
+			status = "Invalid Name!";
+
+		} catch (InvalidIdException e) {
+
+			status = "Invalid Id!";
 		}
 
 		return status;
@@ -47,8 +52,12 @@ public class ZooKeepersController {
 
 				try {
 					status = keeper.alocateAnimal(animalExhibitId, animalTypes);
-				} catch (NumberOfAnimalsExceededException | NumberOfTypesExceededException e) {
-					status = e.toString();
+				} catch (NumberOfAnimalsExceededException e) {
+					status = "Number of Animals Exceeded!";
+
+				} catch (NumberOfTypesExceededException e) {
+
+					status = "Number of Types Exceeded!";
 				}
 			} else
 				status = "Keeper Unqualified!";
@@ -61,24 +70,22 @@ public class ZooKeepersController {
 		return status;
 
 	}
-	
-	
+
 	public String deallocateAnimal(int idKeeper, long animalExhibitId) {
 		String status;
 
 		if (hasKeeper(idKeeper)) {
 			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
-			
-			if(keeper.deallocateAnimal(animalExhibitId))
+
+			if (keeper.deallocateAnimal(animalExhibitId))
 				status = "Animal deallocated with Sucessfull!";
 			else
 				status = "Animal not Allocated in this Keeper!";
-		}
-		else
+		} else
 			status = "Keeper Unregistered!";
 
 		return status;
-		
+
 	}
 
 	public String setKeeperQualified(int idKeeper, boolean answer) {
@@ -93,6 +100,17 @@ public class ZooKeepersController {
 			status = "Keeper Unregistered!";
 
 		return status;
+
+	}
+
+	public Set<Long> getAnimalsUnderGuard(int idKeeper) throws InexistentKeeperException {
+
+		if (!hasKeeper(idKeeper))
+			throw new InexistentKeeperException();
+
+		ZooKeeper keeper = zooKeepersMap.get(idKeeper);
+
+		return keeper.getAnimalsUnderGuard();
 
 	}
 

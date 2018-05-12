@@ -47,9 +47,14 @@ public class AnimalsController {
 						exhibitNumber++, typesSet);
 				animalsMap.put(animal.getExhibitNumber(), animal);
 				status = "Animal added with sucessfull!";
-			} catch (InvalidExhibitNumberException | InvalidHeightException | InvalidWeightException
-					| InvalidLengthException e) {
-				status = e.getMessage();
+			} catch (InvalidExhibitNumberException e) {
+				status = "Invalid Exibit Number!";
+			} catch (InvalidHeightException e) {
+				status = "Invalid Height!";
+			} catch (InvalidWeightException e) {
+				status = "Invalid Weight!";
+			} catch (InvalidLengthException e) {
+				status = "Invalid Length!";
 			}
 		}
 
@@ -68,9 +73,14 @@ public class AnimalsController {
 			animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber++,
 					typesSet);
 			animalsMap.put(animal.getExhibitNumber(), animal);
-		} catch (InvalidExhibitNumberException | InvalidHeightException | InvalidWeightException
-				| InvalidLengthException e) {
-			status = e.toString();
+		} catch (InvalidExhibitNumberException e) {
+			status = "Invalid Exibit Number!";
+		} catch (InvalidHeightException e) {
+			status = "Invalid Height!";
+		} catch (InvalidWeightException e) {
+			status = "Invalid Weight!";
+		} catch (InvalidLengthException e) {
+			status = "Invalid Length!";
 		}
 
 		return status;
@@ -87,11 +97,17 @@ public class AnimalsController {
 			try {
 
 				animal.addMedication(name, id, activePrinciple, aplicattionDate, dosage);
-
 				status = "Medication added with Sucessfull!";
-			} catch (InvalidIdException | InvalidNameException | InvalidActivePrincipleException
-					| InvalidDosageException e) {
-				status = e.toString();
+
+			} catch (InvalidIdException e) {
+				status = "Invalid ID!";
+
+			} catch (InvalidNameException e) {
+				status = "Invalid Name!";
+			} catch (InvalidActivePrincipleException e) {
+				status = "Invalid Active Principle!";
+			} catch (InvalidDosageException e) {
+				status = "Invalid Dosage!";
 			}
 		}
 
@@ -112,7 +128,7 @@ public class AnimalsController {
 				animal.removeMedication(id);
 				status = "Medication removed with Sucessfull!";
 			} catch (InexistentMedicationException e) {
-				status = e.toString();
+				status = "Inexistent Medication!";
 			}
 		}
 
@@ -133,7 +149,7 @@ public class AnimalsController {
 				animal.removeVaccine(id);
 				status = "Medication removed with Sucessfull!";
 			} catch (InexistentVaccineException e) {
-				status = e.toString();
+				status = "Inexistent Vaccine!";
 			}
 		}
 
@@ -155,9 +171,14 @@ public class AnimalsController {
 
 				animal.addVacine(name, id, activePrinciple, aplicattionDate, dosage);
 				status = "Vaccine added with Sucessfull!";
-			} catch (InvalidIdException | InvalidNameException | InvalidActivePrincipleException
-					| InvalidDosageException e) {
-				status = e.toString();
+			} catch (InvalidIdException e) {
+				status = "Invalid ID!";
+			} catch (InvalidNameException e) {
+				status = "Invalid Name!";
+			} catch (InvalidActivePrincipleException e) {
+				status = "Invalid Active Principle!";
+			} catch (InvalidDosageException e) {
+				status = "Invalid Dosage!";
 			}
 		}
 
@@ -177,7 +198,7 @@ public class AnimalsController {
 				animal.setHeight(newHeight);
 				status = "Height updated with Sucessfull!";
 			} catch (InvalidHeightException e) {
-				status = e.toString();
+				status = "Invalid Height!";
 			}
 
 		}
@@ -199,7 +220,7 @@ public class AnimalsController {
 				animal.setWeight(newWeight);
 				status = "Weight updated with Sucessfull!";
 			} catch (InvalidWeightException e) {
-				status = e.toString();
+				status = "Invalid Weight!";
 			}
 
 		}
@@ -221,7 +242,7 @@ public class AnimalsController {
 				animal.setLength(newLength);
 				status = "Length updated with Sucessfull!";
 			} catch (InvalidLengthException e) {
-				status = e.toString();
+				status = "Invalid Length!";
 			}
 
 		}
@@ -254,7 +275,7 @@ public class AnimalsController {
 				father = animalsMap.get(animal.getFatherExhibitiNumber());
 				fatherInfo = father.toString();
 			} catch (UndefinedOffspringException e) {
-				fatherInfo = e.toString();
+				fatherInfo = "Undefined Offspring";
 			}
 
 		} else
@@ -273,7 +294,7 @@ public class AnimalsController {
 				mother = animalsMap.get(animal.getMotherExhibitiNumber());
 				fatherInfo = mother.toString();
 			} catch (UndefinedOffspringException e) {
-				fatherInfo = e.toString();
+				fatherInfo = "Undefined Offspring";
 			}
 
 		} else
@@ -309,13 +330,17 @@ public class AnimalsController {
 
 		return listing;
 	}
-	
-	
+
 	public String listAnimals() {
-		String listing = "No Animals registered!";
-		
-		
-		
+		String listing = "";
+
+		if (animalsMap.isEmpty())
+			listing += "No Animals Registered!";
+		else {
+			for (Animal animal : animalsMap.values())
+				listing += animal.toString();
+		}
+
 		return listing;
 	}
 
