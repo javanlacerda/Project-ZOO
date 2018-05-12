@@ -167,7 +167,10 @@ public class ZooManagement {
 	}
 	
 	public String zooKeeperAlocatteAnimal(int idKeeper, long animalExhibitId, Set<AnimalType> animalTypes) {
+		if (aController.hasAnimal(animalExhibitId))
 		return zKController.allocateAnimal(idKeeper, animalExhibitId, animalTypes);
+		else
+			return "Unregistered Animal";
 	}
 	
 	public String zooKeeperDeallocateAnimal(int idKeeper, long animalExhibitId) {
