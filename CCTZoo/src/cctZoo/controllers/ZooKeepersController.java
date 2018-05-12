@@ -12,6 +12,7 @@ import exceptions.InvalidIdException;
 import exceptions.InvalidNameException;
 import exceptions.NumberOfAnimalsExceededException;
 import exceptions.NumberOfTypesExceededException;
+import exceptions.UnqualifiedKeeperException;
 
 public class ZooKeepersController {
 
@@ -43,48 +44,57 @@ public class ZooKeepersController {
 		return status;
 	}
 
-	public String allocateAnimal(int idKeeper, long animalExhibitId, Set<AnimalType> animalTypes) {
-		String status;
+	public void allocateAnimal(int idKeeper, long animalExhibitId, Set<AnimalType> animalTypes) throws UnqualifiedKeeperException, NumberOfAnimalsExceededException, NumberOfTypesExceededException, InexistentKeeperException {
+		
 
 		if (hasKeeper(idKeeper)) {
 			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
-
-			if (keeper.isQualified()) {
-
-				try {
-					status = keeper.alocateAnimal(animalExhibitId, animalTypes);
-				} catch (NumberOfAnimalsExceededException e) {
-					status = "Number of Animals Exceeded!";
-
-				} catch (NumberOfTypesExceededException e) {
-
-					status = "Number of Types Exceeded!";
-				}
-			} else
-				status = "Keeper Unqualified!";
-
+			
+			if (keeper.isQualified()) 
+					keeper.alocateAnimal(animalExhibitId, animalTypes);
+			else 
+				throw new UnqualifiedKeeperException();
 		}
-
+		
 		else
-			status = "Keeper Unregistered!";
+			throw new InexistentKeeperException();
+				
 
-		return status;
+		
 
 	}
 
-	public String deallocateAnimal(int idKeeper, long animalExhibitId) {
+	public String deallocateAnimal(int idKeeper, int newKeeperId, long animalExhibitId, Set<AnimalType> animalTypes) {
 		String status;
 
 		if (hasKeeper(idKeeper)) {
-			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
 
-			try {
-				keeper.deallocateAnimal(animalExhibitId);
-				status = "Animal deallocated with Sucessfull!";
+			if (hasKeeper(newKeeperId)) {
+				ZooKeeper keeper = zooKeepersMap.get(idKeeper);
+				ZooKeeper newKeeper = zooKeepersMap.get(newKeeperId);
 
-			} catch (AnimalNotUnderGuardException e) {
-				status = "Animal not Allocated in this Keeper!";
+				try {
+					if (keeper.containsAnimalAlocatted(animalExhibitId)) {
+						newKeeper.alocateAnimal(animalExhibitId, animalTypes);
+						keeper.deallocateAnimal(animalExhibitId);
+						status = "Animal deallocated with Sucessfull!";
+					}
+
+					else
+						throw new AnimalNotUnderGuardException();
+
+				} catch (AnimalNotUnderGuardException e) {
+					status = "Animal not Allocated in this Keeper!";
+				} catch (NumberOfAnimalsExceededException e) {
+					status = "Fail to Deallocated Animal, Number of Animals Exceeded in the new Keeper";
+				} catch (NumberOfTypesExceededException e) {
+					status = "Fail to Deallocated Animal, Number of Animals Types Exceeded in the new Keeper";
+				}
 			}
+
+			else
+				status = "New Keeper Unregistered!";
+
 		} else
 			status = "Keeper Unregistered!";
 
@@ -143,6 +153,11 @@ public class ZooKeepersController {
 
 		return listing;
 
+	}
+	
+	public boolean canAlocateAnimal (int id, Set<AnimalType> animalTypes) throws InexistentKeeperException, NumberOfAnimalsExceededException, NumberOfTypesExceededException {
+		if (!hasKeeper(id)) throw new InexistentKeeperException();
+		else return zooKeepersMap.get(id).canAllocate(animalTypes);
 	}
 
 	public boolean hasKeeper(int id) {
