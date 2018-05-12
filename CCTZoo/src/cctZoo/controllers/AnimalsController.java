@@ -22,6 +22,7 @@ import exceptions.InvalidNameException;
 import exceptions.InvalidSpecieNameException;
 import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
+import utils.Auxiliar;
 
 public class AnimalsController {
 
@@ -85,6 +86,7 @@ public class AnimalsController {
 		Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
 				exhibitNumber++, typesSet);
 		animalsMap.put(animal.getExhibitNumber(), animal);
+		
 
 		return animal.getExhibitNumber();
 
@@ -97,10 +99,8 @@ public class AnimalsController {
 
 		Offspring offSpring = new Offspring();
 
-		Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
-				exhibitNumber++, typesSet, fligth);
+		Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber++, typesSet, fligth);
 		animalsMap.put(animal.getExhibitNumber(), animal);
-
 		return animal.getExhibitNumber();
 
 	}
@@ -365,8 +365,9 @@ public class AnimalsController {
 		if (animalsMap.isEmpty())
 			listing += "No Animals Registered!";
 		else {
+			listing += Auxiliar.BREAK_LINE + "Listing of Animals: " + Auxiliar.BREAK_LINE + Auxiliar.BREAK_LINE;
 			for (Animal animal : animalsMap.values())
-				listing += animal.toString();
+				listing += animal.toString() + Auxiliar.BREAK_LINE;
 		}
 
 		return listing;
