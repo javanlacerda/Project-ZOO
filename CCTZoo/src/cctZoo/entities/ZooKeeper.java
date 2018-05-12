@@ -133,9 +133,29 @@ public class ZooKeeper implements ZooKeeperInterface {
 	}
 
 	private int getNumberOfAnimalsAlocated() {
-
 		return animalsUnderGuard.size();
+	}
 
+	public boolean containsAnimalAlocatted(long animalExhibitId) {
+		return animalsUnderGuard.contains(animalExhibitId);
+	}
+
+	public boolean canAllocate(Set<AnimalType> animalTypes)
+			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException {
+		if ((types.size() < MAX_TYPES || containsTypesAnimal(animalTypes)) && !typesExceedSize(animalTypes)) {
+
+			if (animalsUnderGuard.size() < NUMBER_OF_ANIMALS) {
+
+				return true;
+
+			} else
+
+				throw new NumberOfAnimalsExceededException();
+
+		}
+
+		else
+			throw new NumberOfTypesExceededException();
 	}
 
 	@Override
