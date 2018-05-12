@@ -6,6 +6,7 @@ import java.util.Set;
 
 import cctZoo.entities.ZooKeeper;
 import cctZoo.enums.AnimalType;
+import exceptions.AnimalNotUnderGuardException;
 import exceptions.InexistentKeeperException;
 import exceptions.InvalidIdException;
 import exceptions.InvalidNameException;
@@ -77,10 +78,13 @@ public class ZooKeepersController {
 		if (hasKeeper(idKeeper)) {
 			ZooKeeper keeper = zooKeepersMap.get(idKeeper);
 
-			if (keeper.deallocateAnimal(animalExhibitId))
+			try {
+				keeper.deallocateAnimal(animalExhibitId);
 				status = "Animal deallocated with Sucessfull!";
-			else
+
+			} catch (AnimalNotUnderGuardException e) {
 				status = "Animal not Allocated in this Keeper!";
+			}
 		} else
 			status = "Keeper Unregistered!";
 

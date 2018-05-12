@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.Set;
 import cctZoo.enums.AnimalType;
+import exceptions.AnimalNotUnderGuardException;
 import exceptions.NumberOfAnimalsExceededException;
 import exceptions.NumberOfTypesExceededException;
 
@@ -14,7 +15,7 @@ public interface ZooKeeperInterface {
 	String alocateAnimal(long animalExhibitId, Set<AnimalType> animalTypes)
 			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException;
 
-	boolean deallocateAnimal(long id);
+	void deallocateAnimal(long id) throws AnimalNotUnderGuardException;
 
 	int hashCode();
 

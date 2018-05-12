@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import cctZoo.enums.AnimalType;
+import exceptions.AnimalNotUnderGuardException;
 import exceptions.InvalidIdException;
 import exceptions.InvalidNameException;
 import exceptions.NumberOfAnimalsExceededException;
@@ -69,23 +70,14 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return "Animal Registered!";
 	}
 
-	public boolean deallocateAnimal(long animalExhibitId) {
-
-		boolean result = false;
+	public void deallocateAnimal(long animalExhibitId) throws AnimalNotUnderGuardException {
 
 		if (animalsUnderGuard.contains(animalExhibitId)) {
 
-			result = animalsUnderGuard.remove(animalExhibitId);
+			animalsUnderGuard.remove(animalExhibitId);
 
-		}
-		if (!result) {
-
-			throw new IllegalArgumentException("Unknown key!");
-
-		} else {
-
-			return result;
-		}
+		} else
+			throw new AnimalNotUnderGuardException();
 
 	}
 
@@ -131,8 +123,6 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return animalsUnderGuard;
 	}
 
-
-
 	public Set<AnimalType> getTypes() {
 		return types;
 	}
@@ -150,12 +140,15 @@ public class ZooKeeper implements ZooKeeperInterface {
 		return animalsUnderGuard.size();
 
 	}
-	
+
 	@Override
 	public String toString() {
 		String qualified;
 
-		if (isQualified()) qualified = "Yes"; else qualified = "No";
+		if (isQualified())
+			qualified = "Yes";
+		else
+			qualified = "No";
 
 		return "Name: " + this.name + Auxiliar.BREAK_LINE + "ID: " + this.id + Auxiliar.BREAK_LINE + "Qualified: "
 				+ qualified + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated();
