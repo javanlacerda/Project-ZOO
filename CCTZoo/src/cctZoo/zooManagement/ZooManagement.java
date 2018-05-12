@@ -14,6 +14,7 @@ import exceptions.InexistentKeeperException;
 import exceptions.InvalidExhibitNumberException;
 import exceptions.InvalidHeightException;
 import exceptions.InvalidLengthException;
+import exceptions.InvalidSpecieNameException;
 import exceptions.InvalidWeightException;
 import exceptions.NumberOfAnimalsExceededException;
 import exceptions.NumberOfTypesExceededException;
@@ -36,9 +37,9 @@ public class ZooManagement {
 	// Falta sobrecarregar o addAnimal para os casos que tenham flight
 	// eu ja mudei la em controllerAnimal, da uma sacada lá
 
-	public String addAnimal(int idKeeper,String name, Gender gender, long fatherExhibitNumber, long motherExhibitNumber,
-			double height, double weigth, double length, String dateOfBirth, String dateOfArrival,
-			Set<AnimalType> typesSet) {
+	public String addAnimal(int idKeeper, String specieName, Gender gender, long fatherExhibitNumber,
+			long motherExhibitNumber, double height, double weigth, double length, String dateOfBirth,
+			String dateOfArrival, Set<AnimalType> typesSet) {
 
 		LocalDate dateOfBirthParse;
 		LocalDate dateOfArrivalParse;
@@ -57,8 +58,8 @@ public class ZooManagement {
 
 		try {
 			zKController.canAlocateAnimal(idKeeper, typesSet);
-			long exhibitId = aController.addAnimal(name,gender, height, weigth, length, dateOfBirthParse, dateOfArrivalParse,
-					typesSet);
+			long exhibitId = aController.addAnimal(specieName, gender, height, weigth, length, dateOfBirthParse,
+					dateOfArrivalParse, typesSet);
 			zKController.allocateAnimal(idKeeper, exhibitId, typesSet);
 		} catch (InvalidExhibitNumberException e) {
 			return "Invalid Exibit Number!";
@@ -76,15 +77,17 @@ public class ZooManagement {
 			return "Number Of Types Exceeded at ZooKeeper";
 		} catch (InexistentKeeperException e) {
 			return "Inexistent ZooKeeper";
+		} catch (InvalidSpecieNameException e) {
+			return "Invalid Specie Name";
 		}
 
 		return "Animal Registered with Sucessfull!";
 
 	}
 
-	public String addAnimal(int idKeeper,String name, Gender gender, long fatherExhibitNumber, long motherExhibitNumber,
-			double height, double weigth, double length, String dateOfBirth, String dateOfArrival,
-			Set<AnimalType> typesSet, boolean flight) {
+	public String addAnimal(int idKeeper, String specieName, Gender gender, long fatherExhibitNumber,
+			long motherExhibitNumber, double height, double weigth, double length, String dateOfBirth,
+			String dateOfArrival, Set<AnimalType> typesSet, boolean flight) {
 
 		LocalDate dateOfBirthParse;
 		LocalDate dateOfArrivalParse;
@@ -102,8 +105,8 @@ public class ZooManagement {
 		}
 		try {
 			zKController.canAlocateAnimal(idKeeper, typesSet);
-			long exhibitId = aController.addAnimal(name,gender, fatherExhibitNumber, motherExhibitNumber, height, weigth,
-					length, dateOfBirthParse, dateOfArrivalParse, typesSet, flight);
+			long exhibitId = aController.addAnimal(specieName, gender, fatherExhibitNumber, motherExhibitNumber, height,
+					weigth, length, dateOfBirthParse, dateOfArrivalParse, typesSet, flight);
 			zKController.allocateAnimal(idKeeper, exhibitId, typesSet);
 		} catch (InvalidExhibitNumberException e) {
 			return "Invalid Exibit Number!";
@@ -123,13 +126,15 @@ public class ZooManagement {
 			return "Inexistent ZooKeeper";
 		} catch (UndefinedOffspringException e) {
 			return "Inexistent Father and/or Mother!";
+		} catch (InvalidSpecieNameException e) {
+			return "Invalid Specie Name";
 		}
 
 		return "Animal Registered with Sucessfull!";
 
 	}
 
-	public String addAnimal(int idKeeper,String name, Gender gender, double height, double weigth, double length,
+	public String addAnimal(int idKeeper, String specieName, Gender gender, double height, double weigth, double length,
 			String dateOfBirth, String dateOfArrival, Set<AnimalType> typesSet) {
 
 		LocalDate dateOfBirthParse;
@@ -149,8 +154,8 @@ public class ZooManagement {
 
 		try {
 			zKController.canAlocateAnimal(idKeeper, typesSet);
-			long exhibitId = aController.addAnimal(name,gender, height, weigth, length, dateOfBirthParse, dateOfArrivalParse,
-					typesSet);
+			long exhibitId = aController.addAnimal(specieName, gender, height, weigth, length, dateOfBirthParse,
+					dateOfArrivalParse, typesSet);
 			zKController.allocateAnimal(idKeeper, exhibitId, typesSet);
 		} catch (InvalidExhibitNumberException e) {
 			return "Invalid Exibit Number!";
@@ -168,12 +173,14 @@ public class ZooManagement {
 			return "Number Of Types Exceeded at ZooKeeper";
 		} catch (InexistentKeeperException e) {
 			return "Inexistent ZooKeeper";
+		} catch (InvalidSpecieNameException e) {
+			return "Invalid Specie Name";
 		}
 
 		return "Animal Registered with Sucessfull!";
 	}
 
-	public String addAnimal(int idKeeper,String name, Gender gender, double height, double weigth, double length,
+	public String addAnimal(int idKeeper, String specieName, Gender gender, double height, double weigth, double length,
 			String dateOfBirth, String dateOfArrival, Set<AnimalType> typesSet, boolean flight) {
 
 		LocalDate dateOfBirthParse;
@@ -193,8 +200,8 @@ public class ZooManagement {
 
 		try {
 			zKController.canAlocateAnimal(idKeeper, typesSet);
-			long exhibitId = aController.addAnimal(name,gender, height, weigth, length, dateOfBirthParse, dateOfArrivalParse,
-					typesSet, flight);
+			long exhibitId = aController.addAnimal(specieName, gender, height, weigth, length, dateOfBirthParse,
+					dateOfArrivalParse, typesSet, flight);
 			zKController.allocateAnimal(idKeeper, exhibitId, typesSet);
 		} catch (InvalidExhibitNumberException e) {
 			return "Invalid Exibit Number!";
@@ -212,12 +219,14 @@ public class ZooManagement {
 			return "Number Of Types Exceeded at ZooKeeper";
 		} catch (InexistentKeeperException e) {
 			return "Inexistent ZooKeeper";
+		} catch (InvalidSpecieNameException e) {
+			return "Invalid Specie Name";
 		}
 
 		return "Animal Registered with Sucessfull!";
 	}
 
-	public String addAnimalMedication(long animalExhibitNumber, String name, long id, String activePrinciple,
+	public String addAnimalMedication(long animalExhibitNumber, String specieName, long id, String activePrinciple,
 			String aplicattionDate, int dosage) {
 
 		LocalDate aplicattionDateParse;
@@ -228,7 +237,8 @@ public class ZooManagement {
 			return "Invalid Aplicattion Date , please inform a valid date format dd/mm/yyyy";
 		}
 
-		return aController.addMedication(animalExhibitNumber, name, id, activePrinciple, aplicattionDateParse, dosage);
+		return aController.addMedication(animalExhibitNumber, specieName, id, activePrinciple, aplicattionDateParse,
+				dosage);
 
 	}
 
@@ -315,8 +325,6 @@ public class ZooManagement {
 			return "Invalid Qualified Value, please input a valid Value : YES|NO";
 		}
 	}
-
-
 
 	public String zooKeeperDeallocateAnimal(int idKeeper, int newKeeperId, long animalExhibitId) {
 		Set<AnimalType> animalsType;
