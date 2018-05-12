@@ -61,6 +61,38 @@ public class AnimalsController {
 		return status;
 
 	}
+	
+	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
+			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet, boolean fligth) {
+
+		String status = "Inexistent Father or Mother!";
+
+		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
+
+			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
+
+			Animal animal;
+
+			try {
+				animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+						exhibitNumber++, typesSet, fligth);
+				animalsMap.put(animal.getExhibitNumber(), animal);
+				status = "Animal added with sucessfull!";
+			} catch (InvalidExhibitNumberException e) {
+				status = "Invalid Exibit Number!";
+			} catch (InvalidHeightException e) {
+				status = "Invalid Height!";
+			} catch (InvalidWeightException e) {
+				status = "Invalid Weight!";
+			} catch (InvalidLengthException e) {
+				status = "Invalid Length!";
+			}
+		}
+
+		return status;
+
+	}
+
 
 	public String addAnimal(Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
 			LocalDate dateOfArrival, Set<AnimalType> typesSet) {
@@ -87,6 +119,31 @@ public class AnimalsController {
 
 	}
 
+	public String addAnimal(Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
+			LocalDate dateOfArrival, Set<AnimalType> typesSet, boolean fligth) {
+
+		String status = "Animal added with sucessfull!";
+		Offspring offSpring = new Offspring();
+
+		Animal animal;
+		try {
+			animal = new Animal(gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival, exhibitNumber++,
+					typesSet, fligth);
+			animalsMap.put(animal.getExhibitNumber(), animal);
+		} catch (InvalidExhibitNumberException e) {
+			status = "Invalid Exibit Number!";
+		} catch (InvalidHeightException e) {
+			status = "Invalid Height!";
+		} catch (InvalidWeightException e) {
+			status = "Invalid Weight!";
+		} catch (InvalidLengthException e) {
+			status = "Invalid Length!";
+		}
+
+		return status;
+
+	}
+	
 	public String addMedication(long animalExhibitNumber, String name, long id, String activePrinciple,
 			LocalDate aplicattionDate, int dosage) {
 		String status;
