@@ -7,6 +7,7 @@ import exceptions.InvalidHeightException;
 import exceptions.InvalidIdException;
 import exceptions.InvalidLengthException;
 import exceptions.InvalidNameException;
+import exceptions.InvalidSpecieNameException;
 import exceptions.InvalidWeightException;
 
 public final class Validate {
@@ -34,6 +35,11 @@ public final class Validate {
 	public static void validateName(String name) throws InvalidNameException {
 		if (name.trim().equals("") || name == null)
 			throw new InvalidNameException();
+	}
+	
+	public static void validateSpecieName(String specieName) throws InvalidSpecieNameException {
+		if (specieName.trim().equals("") || specieName == null)
+			throw new InvalidSpecieNameException();
 	}
 
 	public static void validateDosage(int dosage) throws InvalidDosageException {

@@ -17,13 +17,14 @@ import exceptions.InvalidHeightException;
 import exceptions.InvalidIdException;
 import exceptions.InvalidLengthException;
 import exceptions.InvalidNameException;
+import exceptions.InvalidSpecieNameException;
 import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
 import interfaces.AnimalInterface;
 import utils.Auxiliar;
 
 public class Animal implements AnimalInterface {
-	
+
 	private String specieName;
 	private boolean fligth = false;
 	private Gender gender;
@@ -38,12 +39,12 @@ public class Animal implements AnimalInterface {
 	private long exhibitNumber;
 	private Set<AnimalType> typesSet;
 
-	public Animal(String specieName,Gender gender, Offspring offSpring, double height, double weight, double length,
+	public Animal(String specieName, Gender gender, Offspring offSpring, double height, double weight, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
-			InvalidLengthException {
+			InvalidLengthException, InvalidSpecieNameException {
 
-		validateAtributes(exhibitNumber, height, weight, length);
+		validateAtributes(specieName,exhibitNumber, height, weight, length);
 
 		this.specieName = specieName;
 		this.gender = gender;
@@ -59,12 +60,12 @@ public class Animal implements AnimalInterface {
 		this.typesSet = typesSet;
 	}
 
-	public Animal(String specieName,Gender gender, Offspring offSpring, double height, double weigth, double length,
+	public Animal(String specieName, Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet,
 			boolean fligth) throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
-			InvalidLengthException {
+			InvalidLengthException, InvalidSpecieNameException {
 
-		validateAtributes(exhibitNumber, height, weight, length);
+		validateAtributes(specieName,exhibitNumber, height, weight, length);
 
 		this.specieName = specieName;
 		this.gender = gender;
@@ -85,11 +86,11 @@ public class Animal implements AnimalInterface {
 		return fligth;
 	}
 
-	@Override
-	public void validateAtributes(long exhibitNumber, double height, double weight, double length)
+	private void validateAtributes(String specieName, long exhibitNumber, double height, double weight, double length)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
-			InvalidLengthException {
+			InvalidLengthException, InvalidSpecieNameException {
 
+		utils.Validate.validateSpecieName(specieName);
 		utils.Validate.validateExhibitNumber(exhibitNumber);
 		utils.Validate.validateHeigh(height);
 		utils.Validate.validateWeight(weight);
@@ -243,12 +244,13 @@ public class Animal implements AnimalInterface {
 		else
 			flight = "No";
 
-		return "Animal: " + Auxiliar.BREAK_LINE + "Flight: " + flight + Auxiliar.BREAK_LINE + "Gender: " + gender
-				+ Auxiliar.BREAK_LINE + "Height: " + height + Auxiliar.BREAK_LINE + "Weight: " + weight
-				+ Auxiliar.BREAK_LINE + "Length: " + length + Auxiliar.BREAK_LINE + "Date of Birth: "
-				+ dateOfBirth.toString() + Auxiliar.BREAK_LINE + "Date of Arrival: " + dateOfArrival.toString()
-				+ Auxiliar.BREAK_LINE + "Exhibit Number: " + exhibitNumber + Auxiliar.BREAK_LINE + "Types: "
-				+ Arrays.toString(typesSet.toArray()) + Auxiliar.BREAK_LINE;
+		return "Animal: " + Auxiliar.BREAK_LINE + "Specie Name: " + this.specieName + Auxiliar.BREAK_LINE + "Flight: "
+				+ flight + Auxiliar.BREAK_LINE + "Gender: " + gender + Auxiliar.BREAK_LINE + "Height: " + height
+				+ Auxiliar.BREAK_LINE + "Weight: " + weight + Auxiliar.BREAK_LINE + "Length: " + length
+				+ Auxiliar.BREAK_LINE + "Date of Birth: " + dateOfBirth.toString() + Auxiliar.BREAK_LINE
+				+ "Date of Arrival: " + dateOfArrival.toString() + Auxiliar.BREAK_LINE + "Exhibit Number: "
+				+ exhibitNumber + Auxiliar.BREAK_LINE + "Types: " + Arrays.toString(typesSet.toArray())
+				+ Auxiliar.BREAK_LINE;
 
 	}
 

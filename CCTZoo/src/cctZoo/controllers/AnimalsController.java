@@ -19,6 +19,7 @@ import exceptions.InvalidHeightException;
 import exceptions.InvalidIdException;
 import exceptions.InvalidLengthException;
 import exceptions.InvalidNameException;
+import exceptions.InvalidSpecieNameException;
 import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
 
@@ -32,55 +33,56 @@ public class AnimalsController {
 		this.exhibitNumber = 0;
 	}
 
-	public long addAnimal(String name,Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
-			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet)
+	public long addAnimal(String specieName, Gender gender, long fatherExhibitNumber, long motherExhibitNumber,
+			double height, double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival,
+			Set<AnimalType> typesSet) throws InvalidExhibitNumberException, InvalidHeightException,
+			InvalidWeightException, InvalidLengthException, UndefinedOffspringException, InvalidSpecieNameException {
+
+		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
+
+			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
+
+			Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth,
+					dateOfArrival, exhibitNumber++, typesSet);
+			animalsMap.put(animal.getExhibitNumber(), animal);
+			return animal.getExhibitNumber();
+
+		}
+
+		else
+			throw new UndefinedOffspringException();
+
+	}
+
+	public long addAnimal(String specieName, Gender gender, long fatherExhibitNumber, long motherExhibitNumber,
+			double height, double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival,
+			Set<AnimalType> typesSet, boolean fligth) throws UndefinedOffspringException, InvalidExhibitNumberException,
+			InvalidHeightException, InvalidWeightException, InvalidLengthException, InvalidSpecieNameException {
+
+		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
+
+			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
+
+			Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth,
+					dateOfArrival, exhibitNumber++, typesSet, fligth);
+			animalsMap.put(animal.getExhibitNumber(), animal);
+			return animal.getExhibitNumber();
+
+		}
+
+		else
+			throw new UndefinedOffspringException();
+
+	}
+
+	public long addAnimal(String specieName, Gender gender, double height, double weigth, double length,
+			LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet)
 			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
-			InvalidLengthException, UndefinedOffspringException {
-
-		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
-
-			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
-
-			Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
-					exhibitNumber++, typesSet);
-			animalsMap.put(animal.getExhibitNumber(), animal);
-			return animal.getExhibitNumber();
-
-		}
-
-		else
-			throw new UndefinedOffspringException();
-
-	}
-
-	public long addAnimal(String name,Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
-			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet,
-			boolean fligth) throws UndefinedOffspringException, InvalidExhibitNumberException, InvalidHeightException,
-			InvalidWeightException, InvalidLengthException {
-
-		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
-
-			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
-
-			Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
-					exhibitNumber++, typesSet, fligth);
-			animalsMap.put(animal.getExhibitNumber(), animal);
-			return animal.getExhibitNumber();
-
-		}
-
-		else
-			throw new UndefinedOffspringException();
-
-	}
-
-	public long addAnimal(String name,Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
-			LocalDate dateOfArrival, Set<AnimalType> typesSet) throws InvalidExhibitNumberException,
-			InvalidHeightException, InvalidWeightException, InvalidLengthException {
+			InvalidLengthException, InvalidSpecieNameException {
 
 		Offspring offSpring = new Offspring();
 
-		Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+		Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
 				exhibitNumber++, typesSet);
 		animalsMap.put(animal.getExhibitNumber(), animal);
 
@@ -88,13 +90,14 @@ public class AnimalsController {
 
 	}
 
-	public long addAnimal(String name,Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
-			LocalDate dateOfArrival, Set<AnimalType> typesSet, boolean fligth) throws InvalidExhibitNumberException,
-			InvalidHeightException, InvalidWeightException, InvalidLengthException {
+	public long addAnimal(String specieName, Gender gender, double height, double weigth, double length,
+			LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet, boolean fligth)
+			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
+			InvalidLengthException, InvalidSpecieNameException {
 
 		Offspring offSpring = new Offspring();
 
-		Animal animal = new Animal(name,gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
+		Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
 				exhibitNumber++, typesSet, fligth);
 		animalsMap.put(animal.getExhibitNumber(), animal);
 
