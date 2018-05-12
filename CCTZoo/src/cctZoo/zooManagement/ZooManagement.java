@@ -9,6 +9,7 @@ import cctZoo.controllers.AnimalsController;
 import cctZoo.controllers.ZooKeepersController;
 import cctZoo.enums.AnimalType;
 import cctZoo.enums.Gender;
+import exceptions.InexistentAnimalException;
 
 public class ZooManagement {
 
@@ -25,8 +26,7 @@ public class ZooManagement {
 
 	// Falta sobrecarregar o addAnimal para os casos que tenham flight
 	// eu ja mudei la em controllerAnimal, da uma sacada lá
-	
-	
+
 	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
 			double weigth, double length, String dateOfBirth, String dateOfArrival, Set<AnimalType> typesSet) {
 
@@ -169,16 +169,23 @@ public class ZooManagement {
 			return "Invalid Qualified Value, please input a valid Value : YES|NO";
 		}
 	}
-	
+
 	public String zooKeeperAlocatteAnimal(int idKeeper, long animalExhibitId, Set<AnimalType> animalTypes) {
 		if (aController.hasAnimal(animalExhibitId))
-		return zKController.allocateAnimal(idKeeper, animalExhibitId, animalTypes);
+			return zKController.allocateAnimal(idKeeper, animalExhibitId, animalTypes);
 		else
 			return "Unregistered Animal";
 	}
-	
-	public String zooKeeperDeallocateAnimal(int idKeeper, long animalExhibitId) {
-		return zKController.deallocateAnimal(idKeeper, animalExhibitId);
+
+	public String zooKeeperDeallocateAnimal(int idKeeper, int newKeeperId, long animalExhibitId) {
+		Set<AnimalType> animalsType;
+		try {
+			animalsType = aController.getAnimalType(animalExhibitId);
+		} catch (InexistentAnimalException e) {
+			return "Unregistered Animal!";
+		}
+		return zKController.deallocateAnimal(idKeeper, newKeeperId, animalExhibitId, animalsType);
+
 	}
 
 	private boolean isDouble(String number) {

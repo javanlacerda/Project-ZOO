@@ -9,6 +9,7 @@ import cctZoo.entities.Animal;
 import cctZoo.entities.Offspring;
 import cctZoo.enums.AnimalType;
 import cctZoo.enums.Gender;
+import exceptions.InexistentAnimalException;
 import exceptions.InexistentMedicationException;
 import exceptions.InexistentVaccineException;
 import exceptions.InvalidActivePrincipleException;
@@ -61,9 +62,10 @@ public class AnimalsController {
 		return status;
 
 	}
-	
+
 	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
-			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet, boolean fligth) {
+			double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet,
+			boolean fligth) {
 
 		String status = "Inexistent Father or Mother!";
 
@@ -92,7 +94,6 @@ public class AnimalsController {
 		return status;
 
 	}
-
 
 	public String addAnimal(Gender gender, double height, double weigth, double length, LocalDate dateOfBirth,
 			LocalDate dateOfArrival, Set<AnimalType> typesSet) {
@@ -143,7 +144,7 @@ public class AnimalsController {
 		return status;
 
 	}
-	
+
 	public String addMedication(long animalExhibitNumber, String name, long id, String activePrinciple,
 			LocalDate aplicattionDate, int dosage) {
 		String status;
@@ -386,6 +387,16 @@ public class AnimalsController {
 		}
 
 		return listing;
+	}
+
+	public Set<AnimalType> getAnimalType(long animalExhibitNumber) throws InexistentAnimalException {
+		if (hasAnimal(animalExhibitNumber)) {
+			Animal animal = animalsMap.get(animalExhibitNumber);
+			return animal.getTypes();
+		}
+
+		else
+			throw new InexistentAnimalException();
 	}
 
 	public String listAnimals() {

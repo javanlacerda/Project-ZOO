@@ -133,9 +133,11 @@ public class ZooKeeper implements ZooKeeperInterface {
 	}
 
 	private int getNumberOfAnimalsAlocated() {
-
 		return animalsUnderGuard.size();
+	}
 
+	public boolean containsAnimalAlocatted(long animalExhibitId) {
+		return animalsUnderGuard.contains(animalExhibitId);
 	}
 
 	@Override
