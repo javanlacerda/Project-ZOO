@@ -153,6 +153,27 @@ public class ZooManagement {
 		return aController.listAnimals();
 	}
 
+	public String addZooKeeper(String qualified, String name) {
+
+		switch (qualified.toUpperCase()) {
+		case "YES":
+			return zKController.addZooKeeper(true, name);
+		case "NO":
+			return zKController.addZooKeeper(false, name);
+
+		default:
+			return "Invalid Qualified Value, please input a valid Value : YES|NO";
+		}
+	}
+	
+	public String zooKeeperAlocatteAnimal(int idKeeper, long animalExhibitId, Set<AnimalType> animalTypes) {
+		return zKController.allocateAnimal(idKeeper, animalExhibitId, animalTypes);
+	}
+	
+	public String zooKeeperDeallocateAnimal(int idKeeper, long animalExhibitId) {
+		return zKController.deallocateAnimal(idKeeper, animalExhibitId);
+	}
+
 	private boolean isDouble(String number) {
 
 		try {
