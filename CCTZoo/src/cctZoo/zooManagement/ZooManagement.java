@@ -23,6 +23,10 @@ public class ZooManagement {
 
 	}
 
+	// Falta sobrecarregar o addAnimal para os casos que tenham flight
+	// eu ja mudei la em controllerAnimal, da uma sacada lá
+	
+	
 	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
 			double weigth, double length, String dateOfBirth, String dateOfArrival, Set<AnimalType> typesSet) {
 
