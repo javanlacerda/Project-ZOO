@@ -1,28 +1,29 @@
 package interfaces;
-import java.util.Map;
+
 import java.util.Set;
-import cctZoo.entities.Animal;
 import cctZoo.enums.AnimalType;
+import exceptions.AnimalNotUnderGuardException;
+import exceptions.NumberOfAnimalsExceededException;
+import exceptions.NumberOfTypesExceededException;
 
 public interface ZooKeeperInterface {
 
-	void setQualificado(boolean answer);
+	void setQualified(boolean answer);
 
-	String getQualificado();
+	boolean isQualified();
 
-	String alocarAnimal(Animal animal);
+	String alocateAnimal(long animalExhibitId, Set<AnimalType> animalTypes)
+			throws NumberOfAnimalsExceededException, NumberOfTypesExceededException;
 
-	boolean desalocarAnimal(long id);
-
-	boolean typesExceedSize(Set<AnimalType> animalTypes);
+	void deallocateAnimal(long id) throws AnimalNotUnderGuardException;
 
 	int hashCode();
 
 	boolean equals(Object obj);
 
-	Set<Long> getAnimaisSobGuarda();
+	Set<Long> getAnimalsUnderGuard();
 
-	Set<AnimalType> getTypes();
+
 
 	String getName();
 

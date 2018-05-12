@@ -1,6 +1,7 @@
 package cctZoo.entities;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -19,6 +20,7 @@ import exceptions.InvalidNameException;
 import exceptions.InvalidWeightException;
 import exceptions.UndefinedOffspringException;
 import interfaces.AnimalInterface;
+import utils.Auxiliar;
 
 public class Animal implements AnimalInterface {
 
@@ -226,6 +228,25 @@ public class Animal implements AnimalInterface {
 		if (exhibitNumber != other.exhibitNumber)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+
+		String flight;
+
+		if (fligth)
+			flight = "Yes";
+		else
+			flight = "No";
+
+		return "Animal: " + Auxiliar.BREAK_LINE + "Flight: " + flight + Auxiliar.BREAK_LINE + "Gender: " + gender
+				+ Auxiliar.BREAK_LINE + "Height: " + height + Auxiliar.BREAK_LINE + "Weight: " + weight
+				+ Auxiliar.BREAK_LINE + "Length: " + length + Auxiliar.BREAK_LINE + "Date of Birth: "
+				+ dateOfBirth.toString() + Auxiliar.BREAK_LINE + "Date of Arrival: " + dateOfArrival.toString()
+				+ Auxiliar.BREAK_LINE + "Exhibit Number: " + exhibitNumber + Auxiliar.BREAK_LINE + "Types: "
+				+ Arrays.toString(typesSet.toArray()) + Auxiliar.BREAK_LINE;
+
 	}
 
 }
