@@ -49,6 +49,30 @@ public class ZooManagement {
 
 	}
 
+	public String addAnimal(Gender gender, long fatherExhibitNumber, long motherExhibitNumber, double height,
+			double weigth, double length, String dateOfBirth, String dateOfArrival, Set<AnimalType> typesSet,
+			boolean flight) {
+
+		LocalDate dateOfBirthParse;
+		LocalDate dateOfArrivalParse;
+
+		try {
+			dateOfBirthParse = LocalDate.parse(dateOfBirth, dateFormate);
+		} catch (DateTimeParseException e) {
+			return "Invalid Date of Birth, please inform a valid date format dd/mm/yyyy";
+		}
+
+		try {
+			dateOfArrivalParse = LocalDate.parse(dateOfArrival, dateFormate);
+		} catch (DateTimeParseException e) {
+			return "Invalid Date of Arrival, please inform a valid date format dd/mm/yyyy";
+		}
+
+		return aController.addAnimal(gender, height, weigth, length, dateOfBirthParse, dateOfArrivalParse, typesSet,
+				flight);
+
+	}
+
 	public String addAnimal(Gender gender, double height, double weigth, double length, String dateOfBirth,
 			String dateOfArrival, Set<AnimalType> typesSet) {
 
@@ -68,6 +92,29 @@ public class ZooManagement {
 		}
 
 		return aController.addAnimal(gender, height, weigth, length, dateOfBirthParse, dateOfArrivalParse, typesSet);
+
+	}
+
+	public String addAnimal(Gender gender, double height, double weigth, double length, String dateOfBirth,
+			String dateOfArrival, Set<AnimalType> typesSet, boolean flight) {
+
+		LocalDate dateOfBirthParse;
+		LocalDate dateOfArrivalParse;
+
+		try {
+			dateOfBirthParse = LocalDate.parse(dateOfBirth, dateFormate);
+		} catch (DateTimeParseException e) {
+			return "Invalid Date of Birth, please inform a valid date format dd/mm/yyyy";
+		}
+
+		try {
+			dateOfArrivalParse = LocalDate.parse(dateOfArrival, dateFormate);
+		} catch (DateTimeParseException e) {
+			return "Invalid Date of Arrival, please inform a valid date format dd/mm/yyyy";
+		}
+
+		return aController.addAnimal(gender, height, weigth, length, dateOfBirthParse, dateOfArrivalParse, typesSet,
+				flight);
 
 	}
 
