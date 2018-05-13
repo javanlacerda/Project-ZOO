@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import cctZoo.enums.AnimalType;
+import cctZoo.enums.Gender;
 import utils.Auxiliar;
 import utils.CSVController;
 
@@ -34,6 +35,27 @@ public class Main {
 	private static void selectOption(String input, Facade facade) {
 		switch (input) {
 		case "1":
+			// cadastrarAnimais(facade);
+			break;
+		case "2":
+			// cadastrarAnimais(facade);
+			break;
+		case "3":
+			// cadastrarAnimais(facade);
+			break;
+		case "4":
+			// cadastrarAnimais(facade);
+			break;
+		case "5":
+			// cadastrarAnimais(facade);
+			break;
+		case "6":
+			// cadastrarAnimais(facade);
+			break;
+		case "7":
+			// cadastrarAnimais(facade);
+			break;
+		case "8":
 			// cadastrarAnimais(facade);
 			break;
 		case "9":
@@ -76,6 +98,123 @@ public class Main {
 				+ "(13) - Get Listing Of Medications" + Auxiliar.BREAK_LINE + "(14) - Get Listing Of Vaccines"
 				+ Auxiliar.BREAK_LINE + "(15) - Zoo Keeper Realocate Animal" + Auxiliar.BREAK_LINE
 				+ "(16) - Get Animal Under Keep Guard" + Auxiliar.BREAK_LINE + "(17) - Exit" + Auxiliar.BREAK_LINE;
+	}
+
+	private static void addNewAnimal(Facade facade) {
+		// int idKeeper, String specieName, Gender gender, double height, double weight,
+		// double length, String dateOfBirth, String dateOfArrival, Set<AnimalType>
+		// typesSet, boolean flight
+
+		long fatherExhibitNumber = -1;
+		long motherExhibitNumber = -1;
+		boolean flight = false;
+		System.out.print("Id of the keeper who will be responsible for the animal: ");
+		int idKeeper = sc.nextInt();
+		System.out.print("Specie of the animal: ");
+		String specie = sc.nextLine();
+		System.out.print("Gender (MALE or FEMALE): ");
+		Gender gender = Gender.valueOf(sc.nextLine());
+		System.out.print("Height: ");
+		double height = sc.nextDouble();
+		System.out.print("Weight: ");
+		double weight = sc.nextDouble();
+		System.out.print("Length: ");
+		double length = sc.nextDouble();
+		System.out.print("Date of birth (dd/mm/yyyy): ");
+		String dateOfBirthE = sc.nextLine();
+		String dateOfBirth = sc.nextLine();
+
+		System.out.print("Date of arrival (dd/mm/yyyy): ");
+		String dateOfArrival = sc.nextLine();
+
+		System.out.print("Does the animal have parents registered? (YES or NO) ");
+
+		String answer = sc.nextLine();
+
+		switch (answer.toUpperCase()) {
+
+		case "YES":
+			System.out.print("Father's exhibit number: ");
+			fatherExhibitNumber = sc.nextLong();
+			System.out.print("Mother's exhibit number: ");
+			motherExhibitNumber = sc.nextLong();
+
+		case "NO":
+
+		default:
+			System.out.println("Invalid, will be considered as NOT!");
+			answer = "NO";
+		}
+
+		Set<AnimalType> types = new HashSet<AnimalType>();
+		System.out.println("Select the type(s) of animal: ");
+		System.out.println("1-MAMMAL/ 2-AVIAN/ 3-AQUATIC/ 4-INSECT/ 5-REPTILE/ 6-OUT");
+
+		String type = null;
+		while (type != "6") {
+
+			System.out.print("Select one option: ");
+
+			type = sc.nextLine();
+
+			switch (type) {
+
+			case "1":
+				types.add(AnimalType.valueOf("MAMMAL"));
+
+			case "2":
+				types.add(AnimalType.valueOf("AVIAN"));
+				System.out.println("the animal flies?(YES or NO)");
+				String ans = sc.nextLine();
+
+				switch (ans.toUpperCase()) {
+
+				case "YES":
+					flight = true;
+
+				default:
+
+				}
+
+			case "3":
+				types.add(AnimalType.valueOf("AQUATIC"));
+
+			case "4":
+				types.add(AnimalType.valueOf("INSECT"));
+
+			case "5":
+				types.add(AnimalType.valueOf("REPTILE"));
+
+			default:
+				System.out.println("Invalid option!");
+
+			}
+		}
+		switch (answer) {
+		case "YES":
+
+			facade.addNewAnimal(idKeeper, specie, gender, fatherExhibitNumber, motherExhibitNumber, height, weight,
+					length, dateOfBirth, dateOfArrival, types, flight);
+		case "NO":
+			facade.addNewAnimal(idKeeper, specie, gender, height, weight, length, dateOfBirth, dateOfArrival, types,
+					flight);
+		}
+	}
+
+	private static void searchForKeeper(Facade facade) {
+
+		System.out.print("Type the ID of ZOO KEEPER you are looking for: ");
+		int id = sc.nextInt();
+		System.out.println(facade.searchForKeeper(id));
+
+	}
+
+	private static void searchForAnimal(Facade facade) {
+
+		System.out.print("Type the EXHIBIT NUMBER of animal you are looking for: ");
+		long exhibitNumber = sc.nextLong();
+		System.out.println(facade.searchForAnimal(exhibitNumber));
+
 	}
 
 	private static void addAnimalMedication(Facade facade) {
