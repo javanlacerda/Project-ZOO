@@ -217,6 +217,55 @@ public class Main {
 
 	}
 
+	private static void addNewKeeper(Facade facade) {
+
+		try {
+			System.out.print("Name of the ZooKeeper: ");
+
+			String name = sc.nextLine();
+
+			if (name.trim().equals(""))
+				throw new IllegalArgumentException("Invalid name!");
+			else {
+				System.out.println("Is the zoo keeper qualified? (YES or NO)");
+
+				String qualified = sc.nextLine();
+
+				if (!qualified.toUpperCase().equals("YES") && !qualified.toUpperCase().equals("NO")) {
+
+					throw new IllegalArgumentException("Qualified invalid!");
+				} else {
+					
+					facade.addNewKeeper(qualified, name);
+				}
+
+			}
+
+		} catch (IllegalArgumentException e) {
+
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	private static void updateAnimal(Facade facade) {
+		// public String updateAnimal(long animalExibitNumber, String attributteToUpdate, String newValue) {
+		
+		try {
+			System.out.print("Animal exhibit number: ");
+			String numEhxibit = sc.nextLine();
+			
+		//	if (numEhxibit.trim().equals())
+			
+			
+		} catch (Exception e) {
+			
+			
+			System.out.println(e.getMessage());
+		}
+		
+		
+	}
+
 	private static void addAnimalMedication(Facade facade) {
 		long animalExhibitNumber;
 		long medicationID;
