@@ -336,15 +336,9 @@ public class Main {
 		}
 	}
 
+	
+	
 	private static void updateAnimal(Facade facade) {
-
-		// public String updateAnimal(long animalExibitNumber, String
-		// attributteToUpdate, String newValue) {
-
-		System.out.print("Animal exhibit number: ");
-		String numEhxibit = sc.nextLine();
-
-		// if (numEhxibit.trim().equals())
 
 		try {
 			System.out.print("Animal exhibit number: ");
@@ -357,7 +351,6 @@ public class Main {
 			String newValue = sc.nextLine();
 
 			facade.updateAnimal(animalExhibitNumber, attributteToUpdate, newValue);
-
 		} catch (Exception e) {
 
 			System.out.println(e.getMessage());
