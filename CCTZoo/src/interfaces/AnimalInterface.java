@@ -6,7 +6,6 @@ import java.util.Set;
 import cctZoo.enums.AnimalType;
 import cctZoo.enums.Gender;
 import exceptions.InexistentMedicationException;
-import exceptions.InexistentVaccineException;
 import exceptions.InvalidActivePrincipleException;
 import exceptions.InvalidDosageException;
 import exceptions.InvalidHeightException;
