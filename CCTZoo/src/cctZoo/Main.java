@@ -35,7 +35,7 @@ public class Main {
 	private static void selectOption(String input, Facade facade) {
 		switch (input) {
 		case "1":
-			// cadastrarAnimais(facade);
+			 addNewAnimal(facade);
 			break;
 		case "2":
 			// cadastrarAnimais(facade);
@@ -92,7 +92,8 @@ public class Main {
 	}
 
 	private static String options() {
-		return Auxiliar.BREAK_LINE + "Options: " + Auxiliar.BREAK_LINE + "(9) - Add Animal Medication"
+		return Auxiliar.BREAK_LINE + "Options: "+ Auxiliar.BREAK_LINE + "(1) - Add New Animal"
+				 + Auxiliar.BREAK_LINE + "(9) - Add Animal Medication"
 				+ Auxiliar.BREAK_LINE + "(10) - Remove Animal Medication" + Auxiliar.BREAK_LINE
 				+ "(11) - Add Animal Vaccine" + Auxiliar.BREAK_LINE + "(12) - Get Animal Parents" + Auxiliar.BREAK_LINE
 				+ "(13) - Get Listing Of Medications" + Auxiliar.BREAK_LINE + "(14) - Get Listing Of Vaccines"
@@ -107,21 +108,77 @@ public class Main {
 
 		long fatherExhibitNumber = -1;
 		long motherExhibitNumber = -1;
+		int idKeeperInt;
+		Gender genderG;
+		double heightH;
+		double weightW;
+		double lengthL;
+		
 		boolean flight = false;
 		System.out.print("Id of the keeper who will be responsible for the animal: ");
-		int idKeeper = sc.nextInt();
+		String idKeeper = sc.nextLine();
+		
+		try {
+			idKeeperInt = Integer.parseInt(idKeeper);
+		}
+		catch (Exception e) {
+			System.out.println(Auxiliar.BREAK_LINE + "Invalid ID Keeper!");
+			return;
+		}
+		
 		System.out.print("Specie of the animal: ");
 		String specie = sc.nextLine();
 		System.out.print("Gender (MALE or FEMALE): ");
-		Gender gender = Gender.valueOf(sc.nextLine());
+		String gender = sc.nextLine();
+		
+		try {
+		genderG = Gender.valueOf(gender);
+		}
+		catch (Exception e) {
+			System.out.println(Auxiliar.BREAK_LINE + "Invalid Gender!");
+			return;
+		}
+		
+		
+		
 		System.out.print("Height: ");
-		double height = sc.nextDouble();
+		String height = sc.nextLine();
+		
+		try {
+			heightH = Double.parseDouble(height);
+		}
+		
+		catch(Exception e) {
+			System.out.println(Auxiliar.BREAK_LINE + "Invalid Height!");
+			return;
+		}
+		
 		System.out.print("Weight: ");
-		double weight = sc.nextDouble();
+		String weight = sc.nextLine();
+		
+		try {
+			weightW = Double.parseDouble(weight);
+		}
+		
+		catch(Exception e) {
+			System.out.println(Auxiliar.BREAK_LINE + "Invalid Weight!");
+			return;
+		}
+		
 		System.out.print("Length: ");
-		double length = sc.nextDouble();
+		String length = sc.nextLine();
+		
+		try {
+			lengthL = Double.parseDouble(length);
+		}
+		
+		catch(Exception e) {
+			System.out.println(Auxiliar.BREAK_LINE + "Invalid Length!");
+			return;
+		}
+		
+		
 		System.out.print("Date of birth (dd/mm/yyyy): ");
-		String dateOfBirthE = sc.nextLine();
 		String dateOfBirth = sc.nextLine();
 
 		System.out.print("Date of arrival (dd/mm/yyyy): ");
@@ -135,69 +192,104 @@ public class Main {
 
 		case "YES":
 			System.out.print("Father's exhibit number: ");
-			fatherExhibitNumber = sc.nextLong();
+			String fExhibitNumber = sc.nextLine();
+			
+			try {
+				fatherExhibitNumber = Long.parseLong(fExhibitNumber);
+			}
+			catch(Exception e) {
+				System.out.println(Auxiliar.BREAK_LINE + "Invalid Father Exhibit Number!");
+				return;
+			}
+			
+			
 			System.out.print("Mother's exhibit number: ");
-			motherExhibitNumber = sc.nextLong();
+			String mExhibitNumber = sc.nextLine();
+			try {
+				motherExhibitNumber = Long.parseLong(mExhibitNumber);
+			}
+			catch(Exception e) {
+				System.out.println(Auxiliar.BREAK_LINE + "Invalid Mother Exhibit Number!");
+				return;
+			}
+			break;
 
 		case "NO":
+			break;
 
 		default:
 			System.out.println("Invalid, will be considered as NOT!");
 			answer = "NO";
+			break;
 		}
 
 		Set<AnimalType> types = new HashSet<AnimalType>();
 		System.out.println("Select the type(s) of animal: ");
 		System.out.println("1-MAMMAL/ 2-AVIAN/ 3-AQUATIC/ 4-INSECT/ 5-REPTILE/ 6-OUT");
 
-		String type = null;
-		while (type != "6") {
-
+		String type = "";
+		
+	do {
+		
 			System.out.print("Select one option: ");
-
 			type = sc.nextLine();
+
+			
 
 			switch (type) {
 
 			case "1":
 				types.add(AnimalType.valueOf("MAMMAL"));
+				break;
 
 			case "2":
 				types.add(AnimalType.valueOf("AVIAN"));
 				System.out.println("the animal flies?(YES or NO)");
 				String ans = sc.nextLine();
+				
 
 				switch (ans.toUpperCase()) {
 
 				case "YES":
 					flight = true;
+					break;
 
 				default:
+					break;
 
-				}
+				} break;
 
 			case "3":
 				types.add(AnimalType.valueOf("AQUATIC"));
+				break;
 
 			case "4":
 				types.add(AnimalType.valueOf("INSECT"));
+				break;
 
 			case "5":
 				types.add(AnimalType.valueOf("REPTILE"));
+				break;
+			case "6":
+				break;
 
 			default:
 				System.out.println("Invalid option!");
+				break;
 
 			}
 		}
+	while (!type.equals("6"));
+	
 		switch (answer) {
 		case "YES":
-
-			facade.addNewAnimal(idKeeper, specie, gender, fatherExhibitNumber, motherExhibitNumber, height, weight,
-					length, dateOfBirth, dateOfArrival, types, flight);
+			System.out.println(facade.addNewAnimal(idKeeperInt, specie, genderG, fatherExhibitNumber, motherExhibitNumber, heightH, weightW,
+					lengthL, dateOfBirth, dateOfArrival, types, flight));
+			break;
 		case "NO":
-			facade.addNewAnimal(idKeeper, specie, gender, height, weight, length, dateOfBirth, dateOfArrival, types,
-					flight);
+			System.out.println(facade.addNewAnimal(idKeeperInt, specie, genderG, heightH, weightW, lengthL, dateOfBirth, dateOfArrival, types,
+					flight));
+			break;
 		}
 	}
 
