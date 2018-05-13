@@ -38,28 +38,25 @@ public class Main {
 			addNewAnimal(facade);
 			return;
 		case "2":
-
 			addNewKeeper(facade);
-
 			return;
 		case "3":
-			searchForKeeper(facade);
-
+			searchForAnimal(facade);
 			return;
 		case "4":
-			searchForAnimal(facade);
+			searchForKeeper(facade);
 			return;
 		case "5":
 			updateAnimal(facade);
 			return;
 		case "6":
-			// cadastrarAnimais(facade);
+			updateKeeperQualified(facade);
 			return;
 		case "7":
 			listAllAnimals(facade);
 			return;
 		case "8":
-			// cadastrarAnimais(facade);
+			listAllZooKeepers(facade);
 			return;
 		case "9":
 			addAnimalMedication(facade);
@@ -95,13 +92,16 @@ public class Main {
 	}
 
 	private static String options() {
-		return Auxiliar.BREAK_LINE + "Options: " + Auxiliar.BREAK_LINE + "(2) - Add New ZooKeeper" + Auxiliar.BREAK_LINE
-				+ "(9) - Add Animal Medication" + Auxiliar.BREAK_LINE + "(10) - Remove Animal Medication"
-				+ Auxiliar.BREAK_LINE + "(11) - Add Animal Vaccine" + Auxiliar.BREAK_LINE + "(12) - Get Animal Parents"
-				+ Auxiliar.BREAK_LINE + "(13) - Get Listing Of Medications" + Auxiliar.BREAK_LINE
-				+ "(14) - Get Listing Of Vaccines" + Auxiliar.BREAK_LINE + "(15) - Zoo Keeper Realocate Animal"
-				+ Auxiliar.BREAK_LINE + "(16) - Get Animal Under Keep Guard" + Auxiliar.BREAK_LINE + "(17) - Exit"
-				+ Auxiliar.BREAK_LINE;
+		return Auxiliar.BREAK_LINE + "Options: " + Auxiliar.BREAK_LINE + "(1) - Add New Animal" + Auxiliar.BREAK_LINE
+				+ "(2) - Add New ZooKeeper" + Auxiliar.BREAK_LINE + "(3) - Search For Animal" + Auxiliar.BREAK_LINE
+				+ "(4) - Search For  Zoo Keeper" + Auxiliar.BREAK_LINE + "(5) - Update Animal" + Auxiliar.BREAK_LINE
+				+ "(6) - Update Keeper" + Auxiliar.BREAK_LINE + "(7) - List All Animals" + Auxiliar.BREAK_LINE
+				+ "(8) - List All Zoo Keepers" + Auxiliar.BREAK_LINE + "(9) - Add Animal Medication"
+				+ Auxiliar.BREAK_LINE + "(10) - Remove Animal Medication" + Auxiliar.BREAK_LINE
+				+ "(11) - Add Animal Vaccine" + Auxiliar.BREAK_LINE + "(12) - Get Animal Parents" + Auxiliar.BREAK_LINE
+				+ "(13) - Get Listing Of Medications" + Auxiliar.BREAK_LINE + "(14) - Get Listing Of Vaccines"
+				+ Auxiliar.BREAK_LINE + "(15) - Zoo Keeper Realocate Animal" + Auxiliar.BREAK_LINE
+				+ "(16) - Get Animal Under Keep Guard" + Auxiliar.BREAK_LINE + "(17) - Exit" + Auxiliar.BREAK_LINE;
 	}
 
 	private static void addNewAnimal(Facade facade) {
@@ -336,8 +336,6 @@ public class Main {
 		}
 	}
 
-	
-	
 	private static void updateAnimal(Facade facade) {
 
 		try {
