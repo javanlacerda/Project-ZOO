@@ -130,7 +130,7 @@ public class ZooManagement {
 		return "Animal Registered with Sucessfull!";
 	}
 
-	public String addAnimalMedication(long animalExhibitNumber, String specieName, long id, String activePrinciple,
+	public String addAnimalMedication(long animalExhibitNumber, String medicationName, long id, String activePrinciple,
 			String aplicattionDate, int dosage) {
 
 		LocalDate aplicattionDateParse;
@@ -141,7 +141,7 @@ public class ZooManagement {
 			return "Invalid Aplicattion Date , please inform a valid date format dd/mm/yyyy";
 		}
 
-		return aController.addMedication(animalExhibitNumber, specieName, id, activePrinciple, aplicattionDateParse,
+		return aController.addMedication(animalExhibitNumber, medicationName, id, activePrinciple, aplicattionDateParse,
 				dosage);
 
 	}
