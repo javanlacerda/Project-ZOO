@@ -38,26 +38,29 @@ public class Main {
 			addNewAnimal(facade);
 			return;
 		case "2":
-			searchForAnimal(facade);
+
+			addNewKeeper(facade);
+
 			return;
 		case "3":
-			// cadastrarAnimais(facade);
-			break;
+			searchForKeeper(facade);
+
+			return;
 		case "4":
-			// cadastrarAnimais(facade);
-			break;
+			searchForAnimal(facade);
+			return;
 		case "5":
-			// cadastrarAnimais(facade);
-			break;
+			updateAnimal(facade);
+			return;
 		case "6":
 			// cadastrarAnimais(facade);
-			break;
+			return;
 		case "7":
-			// cadastrarAnimais(facade);
-			break;
+			listAllAnimals(facade);
+			return;
 		case "8":
 			// cadastrarAnimais(facade);
-			break;
+			return;
 		case "9":
 			addAnimalMedication(facade);
 			return;
@@ -92,7 +95,7 @@ public class Main {
 	}
 
 	private static String options() {
-		return Auxiliar.BREAK_LINE + "Options: " + Auxiliar.BREAK_LINE + "(1) - Add New Animal" + Auxiliar.BREAK_LINE
+		return Auxiliar.BREAK_LINE + "Options: " + Auxiliar.BREAK_LINE + "(2) - Add New ZooKeeper" + Auxiliar.BREAK_LINE
 				+ "(9) - Add Animal Medication" + Auxiliar.BREAK_LINE + "(10) - Remove Animal Medication"
 				+ Auxiliar.BREAK_LINE + "(11) - Add Animal Vaccine" + Auxiliar.BREAK_LINE + "(12) - Get Animal Parents"
 				+ Auxiliar.BREAK_LINE + "(13) - Get Listing Of Medications" + Auxiliar.BREAK_LINE
@@ -102,9 +105,6 @@ public class Main {
 	}
 
 	private static void addNewAnimal(Facade facade) {
-		// int idKeeper, String specieName, Gender gender, double height, double weight,
-		// double length, String dateOfBirth, String dateOfArrival, Set<AnimalType>
-		// typesSet, boolean flight
 
 		long fatherExhibitNumber = -1;
 		long motherExhibitNumber = -1;
@@ -337,14 +337,26 @@ public class Main {
 	}
 
 	private static void updateAnimal(Facade facade) {
+
 		// public String updateAnimal(long animalExibitNumber, String
 		// attributteToUpdate, String newValue) {
 
+		System.out.print("Animal exhibit number: ");
+		String numEhxibit = sc.nextLine();
+
+		// if (numEhxibit.trim().equals())
+
 		try {
 			System.out.print("Animal exhibit number: ");
-			String numEhxibit = sc.nextLine();
+			long animalExhibitNumber = sc.nextLong();
 
-			// if (numEhxibit.trim().equals())
+			System.out.print("Attributte to update: ");
+			String attributteToUpdate = sc.nextLine();
+
+			System.out.print("New value: ");
+			String newValue = sc.nextLine();
+
+			facade.updateAnimal(animalExhibitNumber, attributteToUpdate, newValue);
 
 		} catch (Exception e) {
 
@@ -637,7 +649,16 @@ public class Main {
 
 		System.out.println(facade.updateKeeperQualified(idKeeper, answerB));
 	}
-	
-	
-	
+
+	private static void listAllAnimals(Facade facade) {
+
+		System.out.println(facade.listAllAnimals());
+
+	}
+
+	private static void listAllZooKeepers(Facade facade) {
+
+		System.out.println(facade.listAllZooKeepers());
+	}
+
 }
