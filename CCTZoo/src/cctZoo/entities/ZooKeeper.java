@@ -161,7 +161,7 @@ public class ZooKeeper implements ZooKeeperInterface {
 		else
 			qualified = "No";
 
-		return "Name: " + this.name + Auxiliar.BREAK_LINE + "ID: " + this.id + Auxiliar.BREAK_LINE + "Qualified: "
+		return Auxiliar.BREAK_LINE + "Name: " + this.name + Auxiliar.BREAK_LINE + "ID: " + this.id + Auxiliar.BREAK_LINE + "Qualified: "
 				+ qualified + Auxiliar.BREAK_LINE + "Number of animals alocated: " + getNumberOfAnimalsAlocated()
 				+ Auxiliar.BREAK_LINE + "Types of Animal: " + Arrays.toString(types.toArray());
 

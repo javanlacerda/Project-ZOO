@@ -52,8 +52,6 @@ public interface AnimalInterface {
 
 	void removeMedication(long id) throws InexistentMedicationException;
 
-	void removeVaccine(long id) throws InexistentVaccineException;
-
 	String getListingOfMedications();
 
 	String getListingOfVaccines();

@@ -39,28 +39,9 @@ public class Animal implements AnimalInterface {
 	private long exhibitNumber;
 	private Set<AnimalType> typesSet;
 
+	
+
 	public Animal(String specieName, Gender gender, Offspring offSpring, double height, double weight, double length,
-			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet)
-			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
-			InvalidLengthException, InvalidSpecieNameException {
-
-		validateAtributes(specieName,exhibitNumber, height, weight, length);
-
-		this.specieName = specieName;
-		this.gender = gender;
-		this.offSpring = offSpring;
-		this.height = height;
-		this.weight = weight;
-		this.length = length;
-		this.dateOfBirth = dateOfBirth;
-		this.dateOfArrival = dateOfArrival;
-		this.vaccineMap = new HashMap<>();
-		this.medicationMap = new HashMap<>();
-		this.exhibitNumber = exhibitNumber;
-		this.typesSet = typesSet;
-	}
-
-	public Animal(String specieName, Gender gender, Offspring offSpring, double height, double weigth, double length,
 			LocalDate dateOfBirth, LocalDate dateOfArrival, long exhibitNumber, Set<AnimalType> typesSet,
 			boolean fligth) throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
 			InvalidLengthException, InvalidSpecieNameException {
@@ -71,7 +52,7 @@ public class Animal implements AnimalInterface {
 		this.gender = gender;
 		this.offSpring = offSpring;
 		this.height = height;
-		this.weight = weigth;
+		this.weight = weight;
 		this.length = length;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfArrival = dateOfArrival;
@@ -181,11 +162,6 @@ public class Animal implements AnimalInterface {
 		medicationMap.remove(id);
 	}
 
-	public void removeVaccine(long id) throws InexistentVaccineException {
-		if (!vaccineMap.containsKey(id))
-			throw new InexistentVaccineException();
-		vaccineMap.remove(id);
-	}
 
 	public String getListingOfMedications() {
 		String listing = "";

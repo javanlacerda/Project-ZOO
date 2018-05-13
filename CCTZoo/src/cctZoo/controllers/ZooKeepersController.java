@@ -65,7 +65,7 @@ public class ZooKeepersController {
 
 	}
 
-	public String deallocateAnimal(int idKeeper, int newKeeperId, long animalExhibitId, Set<AnimalType> animalTypes) {
+	public String reallocateAnimal(int idKeeper, int newKeeperId, long animalExhibitId, Set<AnimalType> animalTypes) {
 		String status;
 
 		if (hasKeeper(idKeeper)) {
@@ -149,7 +149,7 @@ public class ZooKeepersController {
 			listing += "No Keepers Registered!";
 		else {
 			
-			listing += "Listing of Zoo Keepers: " + Auxiliar.BREAK_LINE + Auxiliar.BREAK_LINE;
+			listing += "Listing of Zoo Keepers: " + Auxiliar.BREAK_LINE;
 			for (ZooKeeper keeper : zooKeepersMap.values())
 				listing += keeper.toString();
 		}

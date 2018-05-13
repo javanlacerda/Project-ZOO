@@ -36,27 +36,6 @@ public class AnimalsController {
 
 	public long addAnimal(String specieName, Gender gender, long fatherExhibitNumber, long motherExhibitNumber,
 			double height, double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival,
-			Set<AnimalType> typesSet) throws InvalidExhibitNumberException, InvalidHeightException,
-			InvalidWeightException, InvalidLengthException, UndefinedOffspringException, InvalidSpecieNameException {
-
-		if (hasAnimal(motherExhibitNumber) && hasAnimal(fatherExhibitNumber)) {
-
-			Offspring offSpring = new Offspring(fatherExhibitNumber, motherExhibitNumber);
-
-			Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth,
-					dateOfArrival, exhibitNumber++, typesSet);
-			animalsMap.put(animal.getExhibitNumber(), animal);
-			return animal.getExhibitNumber();
-
-		}
-
-		else
-			throw new UndefinedOffspringException();
-
-	}
-
-	public long addAnimal(String specieName, Gender gender, long fatherExhibitNumber, long motherExhibitNumber,
-			double height, double weigth, double length, LocalDate dateOfBirth, LocalDate dateOfArrival,
 			Set<AnimalType> typesSet, boolean fligth) throws UndefinedOffspringException, InvalidExhibitNumberException,
 			InvalidHeightException, InvalidWeightException, InvalidLengthException, InvalidSpecieNameException {
 
@@ -73,22 +52,6 @@ public class AnimalsController {
 
 		else
 			throw new UndefinedOffspringException();
-
-	}
-
-	public long addAnimal(String specieName, Gender gender, double height, double weigth, double length,
-			LocalDate dateOfBirth, LocalDate dateOfArrival, Set<AnimalType> typesSet)
-			throws InvalidExhibitNumberException, InvalidHeightException, InvalidWeightException,
-			InvalidLengthException, InvalidSpecieNameException {
-
-		Offspring offSpring = new Offspring();
-
-		Animal animal = new Animal(specieName, gender, offSpring, height, weigth, length, dateOfBirth, dateOfArrival,
-				exhibitNumber++, typesSet);
-		animalsMap.put(animal.getExhibitNumber(), animal);
-		
-
-		return animal.getExhibitNumber();
 
 	}
 
@@ -157,26 +120,7 @@ public class AnimalsController {
 
 	}
 
-	public String removeVaccine(long animalExhibitNumber, long id) {
-		String status;
-
-		if (hasAnimal(animalExhibitNumber)) {
-			Animal animal = animalsMap.get(animalExhibitNumber);
-
-			try {
-				animal.removeVaccine(id);
-				status = "Medication removed with Sucessfull!";
-			} catch (InexistentVaccineException e) {
-				status = "Inexistent Vaccine!";
-			}
-		}
-
-		else {
-			status = "Inexistent Animal!";
-		}
-		return status;
-
-	}
+	
 
 	public String addVaccine(long animalExhibitNumber, String name, long id, String activePrinciple,
 			LocalDate aplicattionDate, int dosage) {
