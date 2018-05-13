@@ -11,7 +11,6 @@ import cctZoo.enums.AnimalType;
 import cctZoo.enums.Gender;
 import exceptions.InexistentAnimalException;
 import exceptions.InexistentMedicationException;
-import exceptions.InexistentVaccineException;
 import exceptions.InvalidActivePrincipleException;
 import exceptions.InvalidDosageException;
 import exceptions.InvalidExhibitNumberException;
