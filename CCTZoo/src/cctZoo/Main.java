@@ -301,7 +301,16 @@ public class Main {
 	private static void searchForAnimal(Facade facade) {
 
 		System.out.println("Type the EXHIBIT NUMBER of animal you are looking for: ");
-		long exhibitNumber = sc.nextLong();
+		long exhibitNumber;
+		try {
+			String eNumber = sc.nextLine();
+			exhibitNumber = Long.parseLong(eNumber);
+
+		} catch (Exception e) {
+			System.out.println(Auxiliar.BREAK_LINE + "Invalid Animal Exhibit Number!");
+			return;
+		}
+		
 		System.out.println(facade.searchForAnimal(exhibitNumber));
 
 	}
