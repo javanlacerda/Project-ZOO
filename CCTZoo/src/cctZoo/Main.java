@@ -35,11 +35,11 @@ public class Main {
 	private static void selectOption(String input, Facade facade) {
 		switch (input) {
 		case "1":
-			 addNewAnimal(facade);
-			break;
+			addNewAnimal(facade);
+			return;
 		case "2":
-			// cadastrarAnimais(facade);
-			break;
+			searchForAnimal(facade);
+			return;
 		case "3":
 			// cadastrarAnimais(facade);
 			break;
@@ -60,45 +60,45 @@ public class Main {
 			break;
 		case "9":
 			addAnimalMedication(facade);
-			break;
+			return;
 		case "10":
 			removeAnimalMedication(facade);
-			break;
+			return;
 		case "11":
 			addAnimalVaccine(facade);
-			break;
+			return;
 		case "12":
 			getAnimalParents(facade);
-			break;
+			return;
 		case "13":
 			getListingOfMedications(facade);
-			break;
+			return;
 		case "14":
 			getAnimalListingOfVaccines(facade);
-			break;
+			return;
 		case "15":
 			zooKeeperRealocateAnimal(facade);
-			break;
+			return;
 		case "16":
 			getAnimalUnderKeepGuard(facade);
-			break;
+			return;
 		case "17":
-			break;
+			return;
 
 		default:
 			System.out.println("Invalid Option!");
-			break;
+			return;
 		}
 	}
 
 	private static String options() {
-		return Auxiliar.BREAK_LINE + "Options: "+ Auxiliar.BREAK_LINE + "(1) - Add New Animal"
-				 + Auxiliar.BREAK_LINE + "(9) - Add Animal Medication"
-				+ Auxiliar.BREAK_LINE + "(10) - Remove Animal Medication" + Auxiliar.BREAK_LINE
-				+ "(11) - Add Animal Vaccine" + Auxiliar.BREAK_LINE + "(12) - Get Animal Parents" + Auxiliar.BREAK_LINE
-				+ "(13) - Get Listing Of Medications" + Auxiliar.BREAK_LINE + "(14) - Get Listing Of Vaccines"
-				+ Auxiliar.BREAK_LINE + "(15) - Zoo Keeper Realocate Animal" + Auxiliar.BREAK_LINE
-				+ "(16) - Get Animal Under Keep Guard" + Auxiliar.BREAK_LINE + "(17) - Exit" + Auxiliar.BREAK_LINE;
+		return Auxiliar.BREAK_LINE + "Options: " + Auxiliar.BREAK_LINE + "(1) - Add New Animal" + Auxiliar.BREAK_LINE
+				+ "(9) - Add Animal Medication" + Auxiliar.BREAK_LINE + "(10) - Remove Animal Medication"
+				+ Auxiliar.BREAK_LINE + "(11) - Add Animal Vaccine" + Auxiliar.BREAK_LINE + "(12) - Get Animal Parents"
+				+ Auxiliar.BREAK_LINE + "(13) - Get Listing Of Medications" + Auxiliar.BREAK_LINE
+				+ "(14) - Get Listing Of Vaccines" + Auxiliar.BREAK_LINE + "(15) - Zoo Keeper Realocate Animal"
+				+ Auxiliar.BREAK_LINE + "(16) - Get Animal Under Keep Guard" + Auxiliar.BREAK_LINE + "(17) - Exit"
+				+ Auxiliar.BREAK_LINE;
 	}
 
 	private static void addNewAnimal(Facade facade) {
@@ -113,71 +113,66 @@ public class Main {
 		double heightH;
 		double weightW;
 		double lengthL;
-		
+
 		boolean flight = false;
 		System.out.print("Id of the keeper who will be responsible for the animal: ");
 		String idKeeper = sc.nextLine();
-		
+
 		try {
 			idKeeperInt = Integer.parseInt(idKeeper);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(Auxiliar.BREAK_LINE + "Invalid ID Keeper!");
 			return;
 		}
-		
+
 		System.out.print("Specie of the animal: ");
 		String specie = sc.nextLine();
 		System.out.print("Gender (MALE or FEMALE): ");
 		String gender = sc.nextLine();
-		
+
 		try {
-		genderG = Gender.valueOf(gender);
-		}
-		catch (Exception e) {
+			genderG = Gender.valueOf(gender);
+		} catch (Exception e) {
 			System.out.println(Auxiliar.BREAK_LINE + "Invalid Gender!");
 			return;
 		}
-		
-		
-		
+
 		System.out.print("Height: ");
 		String height = sc.nextLine();
-		
+
 		try {
 			heightH = Double.parseDouble(height);
 		}
-		
-		catch(Exception e) {
+
+		catch (Exception e) {
 			System.out.println(Auxiliar.BREAK_LINE + "Invalid Height!");
 			return;
 		}
-		
+
 		System.out.print("Weight: ");
 		String weight = sc.nextLine();
-		
+
 		try {
 			weightW = Double.parseDouble(weight);
 		}
-		
-		catch(Exception e) {
+
+		catch (Exception e) {
 			System.out.println(Auxiliar.BREAK_LINE + "Invalid Weight!");
 			return;
 		}
-		
+
 		System.out.print("Length: ");
 		String length = sc.nextLine();
-		
+
 		try {
 			lengthL = Double.parseDouble(length);
 		}
-		
-		catch(Exception e) {
+
+		catch (Exception e) {
 			System.out.println(Auxiliar.BREAK_LINE + "Invalid Length!");
 			return;
 		}
-		
-		
+
 		System.out.print("Date of birth (dd/mm/yyyy): ");
 		String dateOfBirth = sc.nextLine();
 
@@ -193,22 +188,19 @@ public class Main {
 		case "YES":
 			System.out.print("Father's exhibit number: ");
 			String fExhibitNumber = sc.nextLine();
-			
+
 			try {
 				fatherExhibitNumber = Long.parseLong(fExhibitNumber);
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				System.out.println(Auxiliar.BREAK_LINE + "Invalid Father Exhibit Number!");
 				return;
 			}
-			
-			
+
 			System.out.print("Mother's exhibit number: ");
 			String mExhibitNumber = sc.nextLine();
 			try {
 				motherExhibitNumber = Long.parseLong(mExhibitNumber);
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				System.out.println(Auxiliar.BREAK_LINE + "Invalid Mother Exhibit Number!");
 				return;
 			}
@@ -228,13 +220,11 @@ public class Main {
 		System.out.println("1-MAMMAL/ 2-AVIAN/ 3-AQUATIC/ 4-INSECT/ 5-REPTILE/ 6-OUT");
 
 		String type = "";
-		
-	do {
-		
+
+		do {
+
 			System.out.print("Select one option: ");
 			type = sc.nextLine();
-
-			
 
 			switch (type) {
 
@@ -246,7 +236,6 @@ public class Main {
 				types.add(AnimalType.valueOf("AVIAN"));
 				System.out.println("the animal flies?(YES or NO)");
 				String ans = sc.nextLine();
-				
 
 				switch (ans.toUpperCase()) {
 
@@ -257,7 +246,8 @@ public class Main {
 				default:
 					break;
 
-				} break;
+				}
+				break;
 
 			case "3":
 				types.add(AnimalType.valueOf("AQUATIC"));
@@ -278,32 +268,39 @@ public class Main {
 				break;
 
 			}
-		}
-	while (!type.equals("6"));
-	
+		} while (!type.equals("6"));
+
 		switch (answer) {
 		case "YES":
-			System.out.println(facade.addNewAnimal(idKeeperInt, specie, genderG, fatherExhibitNumber, motherExhibitNumber, heightH, weightW,
-					lengthL, dateOfBirth, dateOfArrival, types, flight));
+			System.out.println(facade.addNewAnimal(idKeeperInt, specie, genderG, fatherExhibitNumber,
+					motherExhibitNumber, heightH, weightW, lengthL, dateOfBirth, dateOfArrival, types, flight));
 			break;
 		case "NO":
-			System.out.println(facade.addNewAnimal(idKeeperInt, specie, genderG, heightH, weightW, lengthL, dateOfBirth, dateOfArrival, types,
-					flight));
+			System.out.println(facade.addNewAnimal(idKeeperInt, specie, genderG, heightH, weightW, lengthL, dateOfBirth,
+					dateOfArrival, types, flight));
 			break;
 		}
 	}
 
 	private static void searchForKeeper(Facade facade) {
 
-		System.out.print("Type the ID of ZOO KEEPER you are looking for: ");
-		int id = sc.nextInt();
-		System.out.println(facade.searchForKeeper(id));
+		System.out.println("Type the ID of ZOO KEEPER you are looking for: ");
+		int id;
+		try {
+			String idK = sc.nextLine();
+			id = Integer.parseInt(idK);
+
+		} catch (Exception e) {
+			System.out.println(Auxiliar.BREAK_LINE + "Invalid Keeper ID");
+			return;
+		}
+		System.out.println(facade.searchForKeeper(id) + Auxiliar.BREAK_LINE);
 
 	}
 
 	private static void searchForAnimal(Facade facade) {
 
-		System.out.print("Type the EXHIBIT NUMBER of animal you are looking for: ");
+		System.out.println("Type the EXHIBIT NUMBER of animal you are looking for: ");
 		long exhibitNumber = sc.nextLong();
 		System.out.println(facade.searchForAnimal(exhibitNumber));
 
@@ -327,7 +324,7 @@ public class Main {
 
 					throw new IllegalArgumentException("Qualified invalid!");
 				} else {
-					
+
 					facade.addNewKeeper(qualified, name);
 				}
 
@@ -338,24 +335,22 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	private static void updateAnimal(Facade facade) {
-		// public String updateAnimal(long animalExibitNumber, String attributteToUpdate, String newValue) {
-		
+		// public String updateAnimal(long animalExibitNumber, String
+		// attributteToUpdate, String newValue) {
+
 		try {
 			System.out.print("Animal exhibit number: ");
 			String numEhxibit = sc.nextLine();
-			
-		//	if (numEhxibit.trim().equals())
-			
-			
+
+			// if (numEhxibit.trim().equals())
+
 		} catch (Exception e) {
-			
-			
+
 			System.out.println(e.getMessage());
 		}
-		
-		
+
 	}
 
 	private static void addAnimalMedication(Facade facade) {
@@ -610,4 +605,39 @@ public class Main {
 		System.out.println(facade.getAnimalsUnderKeepGuard(keeperId));
 	}
 
+	private static void updateKeeperQualified(Facade facade) {
+		System.out.println(Auxiliar.BREAK_LINE + "Update Keeper Qualified: " + Auxiliar.BREAK_LINE);
+		System.out.print("Keeper ID: ");
+		String keeperId = sc.nextLine();
+		System.out.print("Answer: [YES|NO]");
+		String answer = sc.nextLine();
+
+		int idKeeper;
+		try {
+			idKeeper = Integer.parseInt(keeperId);
+		} catch (Exception e) {
+			System.out.println("Invalid Keeper ID!");
+			return;
+		}
+
+		boolean answerB;
+
+		switch (answer.toUpperCase()) {
+		case "YES":
+			answerB = true;
+			break;
+		case "NO":
+			answerB = false;
+			break;
+
+		default:
+			System.out.println("Invalid Answer!");
+			return;
+		}
+
+		System.out.println(facade.updateKeeperQualified(idKeeper, answerB));
+	}
+	
+	
+	
 }
