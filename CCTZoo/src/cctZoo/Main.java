@@ -284,7 +284,7 @@ public class Main {
 
 	private static void searchForKeeper(Facade facade) {
 
-		System.out.println("Type the ID of ZOO KEEPER you are looking for: ");
+		System.out.print("Type the ID of ZOO KEEPER you are looking for: ");
 		int id;
 		try {
 			String idK = sc.nextLine();
@@ -300,7 +300,7 @@ public class Main {
 
 	private static void searchForAnimal(Facade facade) {
 
-		System.out.println("Type the EXHIBIT NUMBER of animal you are looking for: ");
+		System.out.print("Type the EXHIBIT NUMBER of animal you are looking for: ");
 		long exhibitNumber;
 		try {
 			String eNumber = sc.nextLine();
