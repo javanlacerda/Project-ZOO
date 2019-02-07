@@ -1,2 +1,2 @@
 # Project-ZOO
-Project of OO in Javan
+Project to practice Oriented Object concepts.
